@@ -1,0 +1,37 @@
+﻿@model AdList.Web.InputModels.Ads.AdInputModel
+@{
+    ViewBag.Title = "Post new ad";
+}
+
+<h1>@ViewBag.Title</h1>
+@using (Html.BeginForm("Create", "Ads", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, new { @class = "col-md-1 control-label" })
+        <div class="col-md-11">
+            @Html.EditorFor(model => model.Title, new { placeholder = "Ad title" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "col-md-1 control-label" })
+        <div class="col-md-11">
+            @Html.EditorFor(model => model.Description, new { placeholder = "Provide some details about your ad" })
+        </div>        
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, new { @class = "col-md-1 control-label" })
+        <div class="col-md-11">
+            @Html.EditorFor(model => model.CategoryId, new { placeholder = "Provide one category (by Id)" })
+        </div>
+    </div>
+    
+    <div class="form-group text-center">
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+    </div>
+}

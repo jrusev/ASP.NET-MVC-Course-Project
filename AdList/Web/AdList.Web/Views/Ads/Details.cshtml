@@ -1,0 +1,7 @@
+﻿@model AdList.Web.ViewModels.Ads.AdDetailViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h1>@ViewBag.Title</h1>
+@Html.Raw(Model.Description)

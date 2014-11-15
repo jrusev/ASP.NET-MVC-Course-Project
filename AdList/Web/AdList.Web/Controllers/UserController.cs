@@ -31,7 +31,7 @@ namespace AdList.Web.Controllers
 
         // GET: User/Ads
         [Authorize]
-        public ActionResult Ads()
+        public ActionResult MyAds()
         {
             var currentUser = UserManager.FindById(User.Identity.GetUserId());
             if (currentUser == null)

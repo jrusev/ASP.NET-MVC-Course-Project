@@ -457,7 +457,7 @@
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Ads\Details.cshtml" />
-    <Content Include="Views\User\Ads.cshtml" />
+    <Content Include="Views\User\MyAds.cshtml" />
     <Content Include="Views\User\GetById.cshtml" />
     <Content Include="Views\Ads\All.cshtml" />
     <Content Include="Views\Shared\_AdsPartial.cshtml" />

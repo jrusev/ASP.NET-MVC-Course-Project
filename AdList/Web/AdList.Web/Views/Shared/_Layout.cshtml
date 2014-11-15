@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,7 +26,7 @@
                     <li>@Html.ActionLink("All ads", "Index", "Home")</li>
                     <li>@Html.ActionLink("+New Ad", "Create", "Ads")</li>
                     <li>
-                        <a href="@Url.Action("Index", "User")"><span class="fa fa-shopping-cart"></span> My Ads</a>
+                        <a href="@Url.Action("Ads", "User")"><span class="fa fa-shopping-cart"></span> My Ads</a>
                     </li>
                 </ul>
 
@@ -38,19 +38,27 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @*<ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
-        </ol>*@
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - <a href="https://github.com/jrusev/ASP.NET-MVC-Course-Project">github.com/jrusev</a></p>
-        </footer>
-    </div>
+    </header>
+    <section>
+        <div class="container body-content">
+            @*<ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>*@
+            @RenderBody()
+            <hr />
+        </div>
+    </section>
+    <footer class="panel-footer">
+        <p class="text-center text-primary">
+            &copy; <span>
+                <a href="https://github.com/jrusev/ASP.NET-MVC-Course-Project">
+                    Jivko Rusev @DateTime.Now.Year
+                </a>
+            </span>
+        </p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

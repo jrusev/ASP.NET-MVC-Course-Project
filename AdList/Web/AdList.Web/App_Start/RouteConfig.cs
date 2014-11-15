@@ -14,6 +14,11 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Get ads by user",
+                url: "user/{id}",
+                defaults: new { controller = "User", action = "GetById" });
+
+            routes.MapRoute(
                 name: "Get ads by category",
                 url: "ads/tagged/{tag}",
                 defaults: new { controller = "Ads", action = "GetByTag" });

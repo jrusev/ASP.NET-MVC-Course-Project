@@ -27,15 +27,9 @@ namespace AdList.Web.Controllers
         /// </summary>
         protected UserManager<User> UserManager { get; set; }
 
-        //public User currentUser { 
-        //    get
-        //    {
-        //        return this.UserManager.FindById(User.Identity.GetUserId());
-        //    }
-        //}
-
         // GET: User
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Ads()
         {
             var currentUser = UserManager.FindById(User.Identity.GetUserId());
             if (currentUser == null)
@@ -59,10 +53,28 @@ namespace AdList.Web.Controllers
             return View(model);
         }
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
+        // GET: User/{id}
+        public ActionResult GetById(string id)
         {
-            return View();
+            var user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return this.HttpNotFound("User not found!");
+            }
+
+            var model = new UserProfileViewModel()
+            {
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                City = user.City,
+                ImageUrl = user.ImageUrl,
+                PhoneNumber = user.PhoneNumber,
+                CreatedOn = user.CreatedOn,
+                Ads = user.Ads
+            };
+
+            return View(model);
         }
 
         // GET: User/Create

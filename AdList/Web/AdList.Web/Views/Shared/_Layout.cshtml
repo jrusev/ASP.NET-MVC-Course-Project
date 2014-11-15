@@ -25,8 +25,17 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("All ads", "Index", "Home")</li>
                     <li>@Html.ActionLink("+New Ad", "Create", "Ads")</li>
+                    <li>
+                        <a href="#/profile"><span class="fa fa-shopping-cart"></span> My Ads</a>
+                    </li>
                 </ul>
+
                 @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#/inbox"><span class="fa fa-envelope"></span> Inbox</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

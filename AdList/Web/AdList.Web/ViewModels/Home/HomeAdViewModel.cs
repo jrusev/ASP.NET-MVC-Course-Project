@@ -2,6 +2,7 @@
 {
     using AdList.Data.Models;
     using AdList.Web.Infrastructure.Mapping;
+    using System.ComponentModel.DataAnnotations;
 
     public class HomeAdViewModel : IMapFrom<Ad>
     {
@@ -13,6 +14,7 @@
 
         public string ImageUrl { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Price { get; set; }
     }
 }

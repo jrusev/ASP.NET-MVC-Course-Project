@@ -70,9 +70,9 @@ namespace AdList.Web
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
 
             kernel.Bind(typeof(IRepository<Ad>)).To(typeof(DeletableEntityRepository<Ad>));
+            kernel.Bind(typeof(IRepository<Category>)).To(typeof(DeletableEntityRepository<Category>));
 
-            kernel.Bind(typeof(IDeletableEntityRepository<>))
-                .To(typeof(DeletableEntityRepository<>));
+            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 

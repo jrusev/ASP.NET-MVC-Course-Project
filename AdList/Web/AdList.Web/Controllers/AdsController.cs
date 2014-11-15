@@ -15,21 +15,25 @@ namespace AdList.Web.Controllers
 {
     public class AdsController : Controller
     {
-        private readonly IDeletableEntityRepository<Ad> posts;
+        private readonly IDeletableEntityRepository<Ad> ads;
+        private readonly IDeletableEntityRepository<Category> categories;
 
         private readonly ISanitizer sanitizer;
 
-        public AdsController(IDeletableEntityRepository<Ad> posts,
+        public AdsController(
+            IDeletableEntityRepository<Ad> ads,
+            IDeletableEntityRepository<Category> categories,
             ISanitizer sanitizer)
         {
-            this.posts = posts;
+            this.ads = ads;
+            this.categories = categories;
             this.sanitizer = sanitizer;
         }
 
         // /ads/7
         public ActionResult Details(int id, string url, int page = 1)
         {
-            var postViewModel = this.posts.All().Where(x => x.Id == id)
+            var postViewModel = this.ads.All().Where(x => x.Id == id)
                 .Project().To<AdDetailViewModel>().FirstOrDefault();
 
             if (postViewModel == null)
@@ -51,6 +55,7 @@ namespace AdList.Web.Controllers
         public ActionResult Create()
         {
             var model = new AdInputModel();
+            model.CategoryOptions = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
 
@@ -63,17 +68,19 @@ namespace AdList.Web.Controllers
             {
                 var userId = this.User.Identity.GetUserId();
 
-                var post = new Ad
+                var ad = new Ad
                     {
                         Title = input.Title,
                         Description = sanitizer.Sanitize(input.Description),
                         AuthorId = userId,
-                        CategoryId = input.CategoryId
+                        CategoryId = input.CategoryId,
+                        Price = input.Price,
+                        ImageUrl = input.ImageUrl
                     };
 
-                this.posts.Add(post);
-                this.posts.SaveChanges();
-                return this.RedirectToAction("Details", new { id = post.Id, url = "new" });
+                this.ads.Add(ad);
+                this.ads.SaveChanges();
+                return this.RedirectToAction("Details", new { id = ad.Id, url = "new" });
             }
 
             return this.View(input);

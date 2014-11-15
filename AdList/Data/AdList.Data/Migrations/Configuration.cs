@@ -80,8 +80,12 @@ namespace AdList.Data.Migrations
                 context.SaveChanges();
             }
 
-            if (!context.Ads.Any())
+            // Ads
+            if (context.Ads.Count() < 3)
             {
+                // ATTENTION: DELETES ALL ADS
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Ads]");
+
                 var ads = new List<Ad>()
                 {
                     new Ad() { 
@@ -90,7 +94,7 @@ namespace AdList.Data.Migrations
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Phones"),
                         Price = 300,
                         Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@gmail.com"),
+                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
                         ImageUrl = "iPhone-5-White-Design.jpg"
                     },
                     new Ad() { 
@@ -99,7 +103,7 @@ namespace AdList.Data.Migrations
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Computers"),
                         Price = 890,
                         Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@gmail.com"),
+                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
                         ImageUrl = "MacBook_Air_13-inch_35330106_01_620x433.jpg"
                     },
                     new Ad() { 
@@ -108,7 +112,7 @@ namespace AdList.Data.Migrations
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Art"),
                         Price = 500,
                         Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@gmail.com"),
+                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
                         ImageUrl = "monet001.jpg"
                     },
                 };

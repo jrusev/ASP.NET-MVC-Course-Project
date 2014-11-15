@@ -26,7 +26,7 @@
                     <li>@Html.ActionLink("All ads", "Index", "Home")</li>
                     <li>@Html.ActionLink("+New Ad", "Create", "Ads")</li>
                     <li>
-                        <a href="#/profile"><span class="fa fa-shopping-cart"></span> My Ads</a>
+                        <a href="@Url.Action("Index", "User")"><span class="fa fa-shopping-cart"></span> My Ads</a>
                     </li>
                 </ul>
 

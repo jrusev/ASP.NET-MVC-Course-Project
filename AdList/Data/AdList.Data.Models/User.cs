@@ -9,6 +9,7 @@
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Collections.Generic;
 
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
@@ -46,5 +47,7 @@
             
             return userIdentity;
         }
+
+        public virtual ICollection<Ad> Ads { get; set; }
     }
 }

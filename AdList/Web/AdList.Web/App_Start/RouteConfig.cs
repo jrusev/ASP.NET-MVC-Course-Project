@@ -14,18 +14,13 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Create ad",
-                url: "ads/create",
-                defaults: new { controller = "Ads", action = "Create" });
-
-            routes.MapRoute(
-                name: "Get questions by tag",
+                name: "Get ads by category",
                 url: "ads/tagged/{tag}",
                 defaults: new { controller = "Ads", action = "GetByTag" });
 
             routes.MapRoute(
-                name: "Display question",
-                url: "ads/{id}",
+                name: "Show ad details",
+                url: "ads/details/{id}",
                 defaults: new { controller = "Ads", action = "Details" });
 
             routes.MapRoute(

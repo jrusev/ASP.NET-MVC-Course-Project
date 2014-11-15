@@ -33,7 +33,9 @@ namespace AdList.Web.Controllers
 
         public ActionResult All()
         {
-            var model = this.ads.All().Project().To<HomeAdViewModel>();
+            var model = new HomeViewModel();
+            model.Ads = this.ads.All().Project().To<HomeAdViewModel>();
+            model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
 

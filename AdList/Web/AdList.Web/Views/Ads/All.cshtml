@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdList.Web.ViewModels.Home.HomeAdViewModel>
+﻿@model AdList.Web.ViewModels.Home.HomeViewModel
 @{
     ViewBag.Title = "All Ads";
 }
@@ -30,14 +30,12 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="list-group">
-                        <a href="#/categories/Art" class="list-group-item">Art</a>
-                        <a href="#/categories/Baby-gear" class="list-group-item">Baby-gear</a>
-                        <a href="#/categories/Books" class="list-group-item">Books</a>
-                        <a href="#/categories/Cameras" class="list-group-item">Cameras</a>
-                        <a href="#/categories/Car-parts" class="list-group-item">Car-parts</a>
-                        <a href="#/categories/Clothing" class="list-group-item">Clothing</a>
-                        <a href="#/categories/Computers" class="list-group-item">Computers</a>
-                        <a href="#/categories/Furniture" class="list-group-item">Furniture</a>
+                        @{
+                            foreach (var category in Model.Categories)
+                            {
+                                <a href="/categories/@category.Name" class="list-group-item">@category.Name</a>
+                            }
+                        }
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -49,7 +47,7 @@
                         </ul>
                     </div>
 
-                    @Html.Partial("_AdsPartial")
+                    @Html.Partial("_AdsPartial", Model.Ads)
 
                     <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
                         <ul>

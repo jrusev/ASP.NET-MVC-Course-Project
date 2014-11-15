@@ -29,7 +29,7 @@
                                 <div style="background-image:url('/images/@ad.ImageUrl')" class="ratio"></div>
                             </a>
                             <div class="caption">
-                                <h4 class="price-tag pull-right">@ad.Price</h4>
+                                <h4 class="price-tag pull-right">$@{ @ad.Price.ToString("#.##"); }</h4>
                                 <h4 class="truncate"><a href="/ads/details/@ad.Id">@ad.Title</a></h4>
                                 <p class="truncate">@ad.Description</p>
                             </div>

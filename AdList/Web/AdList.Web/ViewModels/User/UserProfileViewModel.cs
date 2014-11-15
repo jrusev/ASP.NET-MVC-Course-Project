@@ -6,6 +6,7 @@
     using System.Web;
     using AdList.Data.Models;
     using AdList.Web.Infrastructure.Mapping;
+    using AdList.Web.ViewModels.Home;
 
     public class UserProfileViewModel : IMapFrom<User>
     {
@@ -25,6 +26,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public virtual ICollection<Ad> Ads { get; set; }
+        public virtual IQueryable<HomeAdViewModel> Ads { get; set; }
     }
 }

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AdList.Web.ViewModels.Home.HomeAdViewModel>
+@{
+    ViewBag.Title = "All Ads";
+}
+
+<section>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form role="search" class="navbar-form"></form>
+                    <div class="input-group">
+                        <input type="text" placeholder="Search" name="q" class="form-control">
+                        <div class="input-group-btn"><button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form role="search" class="navbar-form">
+                        <select class="form-control">
+                            <option value="-published">Newest</option>
+                            <option value="published">Oldest</option>
+                            <option value="price">Low price</option>
+                            <option value="-price">High price</option>
+                            <option value="title">Title</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="#/categories/Art" class="list-group-item">Art</a>
+                        <a href="#/categories/Baby-gear" class="list-group-item">Baby-gear</a>
+                        <a href="#/categories/Books" class="list-group-item">Books</a>
+                        <a href="#/categories/Cameras" class="list-group-item">Cameras</a>
+                        <a href="#/categories/Car-parts" class="list-group-item">Car-parts</a>
+                        <a href="#/categories/Clothing" class="list-group-item">Clothing</a>
+                        <a href="#/categories/Computers" class="list-group-item">Computers</a>
+                        <a href="#/categories/Furniture" class="list-group-item">Furniture</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
+                        <ul>
+                            <li  class="disabled">
+                                <a ng-click="selectPage(page.number)">First</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    @Html.Partial("_AdsPartial")
+
+                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
+                        <ul>
+                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >First</a></li>
+                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >Previous</a></li>
+                            <li  class="ng-scope active"><a ng-click="selectPage(page.number)" >1</a></li>
+                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >2</a></li>
+                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Next</a></li>
+                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Last</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -10,6 +10,7 @@ using AdList.Web.ViewModels.Ads;
 using AutoMapper.QueryableExtensions;
 using AdList.Web.Infrastructure;
 using Microsoft.AspNet.Identity;
+using AdList.Web.ViewModels.Home;
 
 namespace AdList.Web.Controllers
 {
@@ -30,18 +31,24 @@ namespace AdList.Web.Controllers
             this.sanitizer = sanitizer;
         }
 
-        // /ads/7
-        public ActionResult Details(int id, string url, int page = 1)
+        public ActionResult All()
         {
-            var postViewModel = this.ads.All().Where(x => x.Id == id)
+            var model = this.ads.All().Project().To<HomeAdViewModel>();
+            return this.View(model);
+        }
+
+        // /ads/details/7
+        public ActionResult Details(int id, int page = 1)
+        {
+            var adViewModel = this.ads.All().Where(x => x.Id == id)
                 .Project().To<AdDetailViewModel>().FirstOrDefault();
 
-            if (postViewModel == null)
+            if (adViewModel == null)
             {
                 return this.HttpNotFound("No ad with such id!");
             }
 
-            return View(postViewModel);
+            return View(adViewModel);
         }
 
         // /ads/tagged/phones

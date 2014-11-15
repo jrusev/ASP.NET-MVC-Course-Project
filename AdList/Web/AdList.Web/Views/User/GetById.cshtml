@@ -32,31 +32,7 @@
                 </ul>
             </div>
             <div class="row">
-                @foreach (var ad in Model.Ads)
-                {
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <a href="/ads/details/@ad.Id" title="@ad.Title">
-                                <div style="background-image:url('/images/@ad.ImageUrl')" class="ratio"></div>
-                            </a>
-                            <div class="caption">
-                                <h4 class="price-tag pull-right">$@{ @ad.Price.ToString("#.##"); }</h4>
-                                <h4 class="truncate"><a href="/ads/details/@ad.Id">@ad.Title</a></h4>
-                                <p class="truncate">@ad.Description</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                }
+                @Html.Partial("_AdsPartial", Model.Ads)
             </div>
         </div>
     </div>

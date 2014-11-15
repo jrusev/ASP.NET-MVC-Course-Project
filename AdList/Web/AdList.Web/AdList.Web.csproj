@@ -456,6 +456,8 @@
     <Content Include="Views\Ads\Details.cshtml" />
     <Content Include="Views\User\Ads.cshtml" />
     <Content Include="Views\User\GetById.cshtml" />
+    <Content Include="Views\Ads\All.cshtml" />
+    <Content Include="Views\Shared\_AdsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

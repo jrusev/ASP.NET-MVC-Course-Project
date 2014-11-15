@@ -1,7 +1,9 @@
 - Home
     - Search
-- Paging, Sorting
+- Paging, Sorting, Searching
 - Edit ads
 - Edit user profile
 - Administration
 - Messages
+- UoW
+- more ads

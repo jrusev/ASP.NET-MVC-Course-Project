@@ -3,17 +3,17 @@
     ViewBag.Title = "Profile";
 }
 
-<div class="container ng-scope">
+<div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="thumbnail">
-                <img ng-src="images/default-avatar.jpg" alt="avatar" class="avatar" src="images/default-avatar.jpg">
+                <img alt="avatar" class="avatar" src="images/default-avatar.jpg">
                 <h4>Personal information:</h4>
                 <ul class="list-group">
-                    <li class="list-group-item"><i class="fa fa-user"></i><span class="list-group-item-text ng-binding"> admin</span></li>
-                    <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text ng-binding"> @Model.FirstName @Model.LastName</span></li>
-                    <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text ng-binding"> @Model.PhoneNumber</span></li>
-                    <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text ng-binding"> @Model.City</span></li>
+                    <li class="list-group-item"><i class="fa fa-user"></i><span class="list-group-item-text"> admin</span></li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text"> @Model.FirstName @Model.LastName</span></li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text"> @Model.PhoneNumber</span></li>
+                    <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text"> @Model.City</span></li>
                     <a href="#/settings">
                         <li class="list-group-item"><i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span></li>
                     </a>
@@ -21,15 +21,15 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
+            <div class="pagination" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
                 <ul>
                     <!-- ngRepeat: page in pages -->
-                    <li ng-repeat="page in pages" ng-class="{active: page.active, disabled: page.disabled}" class="ng-scope disabled">
-                        <a ng-click="selectPage(page.number)" class="ng-binding">First</a>
+                    <li ng-repeat="page in pages" ng-class="{active: page.active, disabled: page.disabled}" class="disabled">
+                        <a ng-click="selectPage(page.number)">First</a>
                     </li>
                 </ul>
             </div>
-            <div class="row ng-isolate-scope" items-grid="items-grid" items="user.items" num="numPerPage" user="user">
+            <div class="row" items-grid="items-grid" items="user.items" num="numPerPage" user="user">
                 @foreach (var ad in Model.Ads)
                 {
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -44,8 +44,14 @@
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">15 reviews</p>
-                                <p><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></p>
-                                <!-- ngIf: user._id === item.owner --><a ng-if="user._id === item.owner" href="#/items/5437b93a08ccfa02000c236e/edit" class="btn btn-success btn-block ng-scope">Edit</a><!-- end ngIf: user._id === item.owner -->
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                                <a href="#/items/5437b93a08ccfa02000c236e/edit" class="btn btn-success btn-block">Edit</a>
                             </div>
                         </div>
                     </div>

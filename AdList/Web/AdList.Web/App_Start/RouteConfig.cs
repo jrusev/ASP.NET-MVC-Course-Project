@@ -15,8 +15,8 @@
 
             routes.MapRoute(
                 name: "Get ads by category",
-                url: "ads/tagged/{tag}",
-                defaults: new { controller = "Ads", action = "GetByTag" });
+                url: "category/{name}",
+                defaults: new { controller = "Category", action = "Index" });
 
             routes.MapRoute(
                 name: "Show ad details",

@@ -1,11 +1,13 @@
-﻿@model AdList.Web.ViewModels.Home.HomeViewModel
+﻿@model AdList.Web.ViewModels.Category.CategoryViewModel
 @{
-    ViewBag.Title = "All Ads";
+    ViewBag.Title = Model.CategoryName;
 }
-
 <section>
     <div>
         <div class="container">
+            <div class="row text-center">
+                <h1 class="ng-binding">@Model.CategoryName</h1>
+            </div>
             <div class="row">
                 <div class="col-md-4">
                     <form role="search" class="navbar-form"></form>
@@ -41,7 +43,7 @@
                 <div class="col-md-9">
                     <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
                         <ul>
-                            <li  class="disabled">
+                            <li class="disabled">
                                 <a ng-click="selectPage(page.number)">First</a>
                             </li>
                         </ul>
@@ -51,12 +53,12 @@
 
                     <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
                         <ul>
-                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >First</a></li>
-                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >Previous</a></li>
-                            <li  class="ng-scope active"><a ng-click="selectPage(page.number)" >1</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >2</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Next</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Last</a></li>
+                            <li class="ng-scope disabled"><a ng-click="selectPage(page.number)">First</a></li>
+                            <li class="ng-scope disabled"><a ng-click="selectPage(page.number)">Previous</a></li>
+                            <li class="ng-scope active"><a ng-click="selectPage(page.number)">1</a></li>
+                            <li class="ng-scope"><a ng-click="selectPage(page.number)">2</a></li>
+                            <li class="ng-scope"><a ng-click="selectPage(page.number)">Next</a></li>
+                            <li class="ng-scope"><a ng-click="selectPage(page.number)">Last</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,4 +66,3 @@
         </div>
     </div>
 </section>
-

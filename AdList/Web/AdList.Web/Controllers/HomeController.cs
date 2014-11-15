@@ -10,16 +10,16 @@
 
     public class HomeController : Controller
     {
-        private readonly IDeletableEntityRepository<Ad> posts;
+        private readonly IDeletableEntityRepository<Ad> ads;
 
-        public HomeController(IDeletableEntityRepository<Ad> posts)
+        public HomeController(IDeletableEntityRepository<Ad> ads)
         {
-            this.posts = posts;
+            this.ads = ads;
         }
 
         public ActionResult Index()
         {
-            var model = this.posts.All().Project().To<HomeAdViewModel>();
+            var model = this.ads.All().Project().To<HomeAdViewModel>();
 
             return this.View(model);
         }

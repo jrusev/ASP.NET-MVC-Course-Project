@@ -14,9 +14,11 @@
                     <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text"> @Model.FirstName @Model.LastName</span></li>
                     <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text"> @Model.PhoneNumber</span></li>
                     <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text"> @Model.City</span></li>
-                    <a href="#/settings">
-                        <li class="list-group-item"><i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span></li>
-                    </a>
+                    <li class="list-group-item">
+                        <a href="#/settings">
+                            <i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -29,7 +31,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="row" items-grid="items-grid" items="user.items" num="numPerPage" user="user">
+            <div class="row">
                 @foreach (var ad in Model.Ads)
                 {
                     <div class="col-sm-4 col-lg-4 col-md-4">

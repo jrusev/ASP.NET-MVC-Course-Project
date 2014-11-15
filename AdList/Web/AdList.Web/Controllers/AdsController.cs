@@ -53,12 +53,6 @@ namespace AdList.Web.Controllers
             return View(adViewModel);
         }
 
-        // /ads/tagged/phones
-        public ActionResult GetByTag(string tag)
-        {
-            return Content(tag);
-        }
-
         [HttpGet]
         [Authorize]
         public ActionResult Create()

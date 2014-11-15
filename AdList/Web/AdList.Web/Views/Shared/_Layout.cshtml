@@ -24,18 +24,24 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("All ads", "All", "Ads")</li>
-                    <li>@Html.ActionLink("+New Ad", "Create", "Ads")</li>
-                    <li>
-                        <a href="@Url.Action("MyAds", "User")"><span class="fa fa-shopping-cart"></span> My Ads</a>
-                    </li>
                 </ul>
 
                 @Html.Partial("_LoginPartial")
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#/inbox"><span class="fa fa-envelope"></span> Inbox</a>
-                    </li>
-                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Create", "Ads")"><span class="glyphicon glyphicon-plus-sign"></span> New Ad</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("MyAds", "User")"><span class="fa fa-shopping-cart"></span> My Ads</a>
+                        </li>
+                        <li>
+                            <a href="#/inbox"><span class="fa fa-envelope"></span> Inbox</a>
+                        </li>
+                    </ul>
+                }
+
             </div>
         </div>
     </header>

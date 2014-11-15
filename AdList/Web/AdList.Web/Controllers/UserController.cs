@@ -27,7 +27,7 @@ namespace AdList.Web.Controllers
         /// </summary>
         protected UserManager<User> UserManager { get; set; }
 
-        // GET: User
+        // GET: User/Ads
         [Authorize]
         public ActionResult Ads()
         {
@@ -53,7 +53,7 @@ namespace AdList.Web.Controllers
             return View(model);
         }
 
-        // GET: User/{id}
+        // GET: User/GetById/{id}
         public ActionResult GetById(string id)
         {
             var user = UserManager.FindById(id);

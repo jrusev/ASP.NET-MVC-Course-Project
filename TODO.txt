@@ -1,0 +1,9 @@
+- All ads - Categories panel
+- ByCategory
+- Home
+    - Search
+- Paging, Sorting
+- Edit ads
+- Edit user profile
+- Administration
+- Messages

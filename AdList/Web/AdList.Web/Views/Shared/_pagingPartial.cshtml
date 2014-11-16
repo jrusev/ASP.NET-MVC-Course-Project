@@ -7,5 +7,6 @@
 
     @Html.PagedListPager(Model, page => Url.Action("All",
                         new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 </div>
 

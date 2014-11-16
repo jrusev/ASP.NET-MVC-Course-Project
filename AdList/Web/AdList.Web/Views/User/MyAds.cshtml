@@ -1,4 +1,5 @@
 ﻿@model AdList.Web.ViewModels.User.UserProfileViewModel
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Profile";
 }
@@ -71,11 +72,14 @@
                             </div>
                         </div>
                     </div>
-                }                             
+                }
             </div>
             <br />
-            @Html.Partial("_PagingPartial", Model.Ads)
-            
+            Page @(Model.Ads.PageCount < Model.Ads.PageNumber ? 0 : Model.Ads.PageNumber) of @Model.Ads.PageCount
+
+            @Html.PagedListPager(Model.Ads, page => Url.Action("MyAds",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
         </div>
     </div>
 </div>

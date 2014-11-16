@@ -1,9 +1,8 @@
-- fix sorting in getById (MyAds)
 - Messages
 - UoW
 - image upload
 
 // optional
-- Edit ads
+- Edit ads (plus links on User/MyAds0
 - Delete ads
 - Edit user profile

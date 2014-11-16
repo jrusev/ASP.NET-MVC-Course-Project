@@ -77,6 +77,7 @@ namespace AdList.Web.Controllers
                 Ads = this.GetAds(userAds, sortOrder, currentFilter, searchString, page, pageSize: 12)
             };
 
+            ViewBag.UserId = id;
             return View(model);
         }
 

@@ -1,13 +1,13 @@
-﻿using AdList.Data.Common.Repository;
-using AdList.Data.Models;
-using AdList.Web.ViewModels.Home;
-using System.Linq;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using AdList.Web.ViewModels.Category;
-
-namespace AdList.Web.Controllers
+﻿namespace AdList.Web.Controllers
 {
+    using AdList.Data.Common.Repository;
+    using AdList.Data.Models;
+    using System.Linq;
+    using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
+    using AdList.Web.ViewModels.Category;
+    using AdList.Web.ViewModels.Ads;
+
     public class CategoryController : Controller
     {
         private readonly IDeletableEntityRepository<Ad> ads;
@@ -23,7 +23,7 @@ namespace AdList.Web.Controllers
         public ActionResult Index(string name)
         {
             var model = new CategoryViewModel();
-            model.Ads = this.ads.All().Where(a => a.Category.Name == name).Project().To<HomeAdViewModel>();
+            model.Ads = this.ads.All().Where(a => a.Category.Name == name).Project().To<AdDetailViewModel>();
             model.CategoryName = name;
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);

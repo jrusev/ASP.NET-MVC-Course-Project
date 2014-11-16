@@ -6,7 +6,9 @@
 
     using AdList.Data.Common.Repository;
     using AdList.Data.Models;
-    using AdList.Web.ViewModels.Home;
+    using AdList.Web.ViewModels.Ads;
+    using PagedList;
+    using System.Linq;
 
     public class HomeController : Controller
     {
@@ -19,9 +21,12 @@
 
         public ActionResult Index()
         {
-            var model = this.ads.All().Project().To<HomeAdViewModel>();
+            int pageSize = 12;
+            int pageNumber = 1;
+            var model = this.ads.All().Project().To<AdDetailViewModel>();
+            model = model.OrderBy(ad => ad.CreatedOn);
 
-            return this.View(model);
+            return this.View(model.ToPagedList(pageNumber, pageSize));
         }
     }
 }

@@ -12,7 +12,7 @@ using AdList.Data;
 using System.Data.Entity;
 using AdList.Web.ViewModels.User;
 using AutoMapper.QueryableExtensions;
-using AdList.Web.ViewModels.Home;
+using AdList.Web.ViewModels.Ads;
 
 namespace AdList.Web.Controllers
 {
@@ -48,7 +48,7 @@ namespace AdList.Web.Controllers
                 ImageUrl = currentUser.ImageUrl,
                 PhoneNumber = currentUser.PhoneNumber,
                 CreatedOn = currentUser.CreatedOn,
-                Ads = currentUser.Ads.AsQueryable().Project().To<HomeAdViewModel>()
+                Ads = currentUser.Ads.AsQueryable().Project().To<AdDetailViewModel>()
             };
 
             
@@ -73,7 +73,7 @@ namespace AdList.Web.Controllers
                 ImageUrl = user.ImageUrl,
                 PhoneNumber = user.PhoneNumber,
                 CreatedOn = user.CreatedOn,
-                Ads = user.Ads.AsQueryable().Project().To<HomeAdViewModel>()
+                Ads = user.Ads.AsQueryable().Project().To<AdDetailViewModel>()
             };
 
             return View(model);

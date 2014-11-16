@@ -1,23 +1,20 @@
-﻿using AdList.Data.Common.Repository;
-using AdList.Data.Models;
-using AdList.Web.InputModels.Ads;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AdList.Web.ViewModels.Ads;
-using AutoMapper.QueryableExtensions;
-using AdList.Web.Infrastructure;
-using Microsoft.AspNet.Identity;
-using AdList.Web.ViewModels.Home;
-using PagedList;
-
-namespace AdList.Web.Controllers
+﻿namespace AdList.Web.Controllers
 {
-    public class AdsController : Controller
+    using AdList.Data.Common.Repository;
+    using AdList.Data.Models;
+    using AdList.Web.InputModels.Ads;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+    using AdList.Web.ViewModels.Ads;
+    using AutoMapper.QueryableExtensions;
+    using AdList.Web.Infrastructure;
+    using Microsoft.AspNet.Identity;
+    using AdList.Web.ViewModels.Home;
+    using PagedList;
+
+    public class AdsController : AdsPagingControllerBase
     {
-        private readonly IDeletableEntityRepository<Ad> ads;
         private readonly IDeletableEntityRepository<Category> categories;
 
         private readonly ISanitizer sanitizer;
@@ -26,16 +23,16 @@ namespace AdList.Web.Controllers
             IDeletableEntityRepository<Ad> ads,
             IDeletableEntityRepository<Category> categories,
             ISanitizer sanitizer)
+            :base(ads)
         {
-            this.ads = ads;
             this.categories = categories;
             this.sanitizer = sanitizer;
         }
 
-        public ActionResult All()
+        public ActionResult All(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var model = new HomeViewModel();
-            model.Ads = this.ads.All().Project().To<HomeAdViewModel>();
+            model.Ads = this.GetAds(sortOrder, currentFilter, searchString, page);
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
@@ -75,7 +72,7 @@ namespace AdList.Web.Controllers
                 case "date_desc":
                     allAds = allAds.OrderByDescending(ad => ad.CreatedOn);
                     break;
-                default:  // Name ascending 
+                default:  // by date 
                     allAds = allAds.OrderBy(ad => ad.CreatedOn);
                     break;
             }
@@ -83,8 +80,6 @@ namespace AdList.Web.Controllers
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(allAds.ToPagedList(pageNumber, pageSize));
-
-            //return View(this.ads.All().Project().To<AdDetailViewModel>());
         }
 
         public ActionResult Stats()

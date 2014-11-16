@@ -1,12 +1,10 @@
 ﻿namespace AdList.Web.ViewModels.User
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using AdList.Data.Models;
     using AdList.Web.Infrastructure.Mapping;
-    using AdList.Web.ViewModels.Home;
+    using AdList.Web.ViewModels.Ads;
 
     public class UserProfileViewModel : IMapFrom<User>
     {
@@ -26,6 +24,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public virtual IQueryable<HomeAdViewModel> Ads { get; set; }
+        public virtual IQueryable<AdDetailViewModel> Ads { get; set; }
     }
 }

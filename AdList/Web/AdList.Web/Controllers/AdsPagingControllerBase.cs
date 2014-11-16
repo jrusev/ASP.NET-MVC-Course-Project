@@ -18,7 +18,7 @@
             this.ads = ads;
         }
 
-        protected IPagedList<AdDetailViewModel> GetAds(string sortOrder, string currentFilter, string searchString, int? page)
+        protected IPagedList<AdDetailViewModel> GetAds(IQueryable<AdDetailViewModel> allAds, string sortOrder, string currentFilter, string searchString, int? page, int pageSize)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -35,7 +35,7 @@
 
             ViewBag.CurrentFilter = searchString;
 
-            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            //var allAds = this.ads.All().Project().To<AdDetailViewModel>();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -58,7 +58,6 @@
                     break;
             }
 
-            int pageSize = 3;
             int pageNumber = (page ?? 1);
             return allAds.ToPagedList(pageNumber, pageSize);
         }

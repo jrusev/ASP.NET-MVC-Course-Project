@@ -32,54 +32,18 @@
         public ActionResult All(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var model = new HomeViewModel();
-            model.Ads = this.GetAds(sortOrder, currentFilter, searchString, page);
+
+            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 12);
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
 
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
             var allAds = this.ads.All().Project().To<AdDetailViewModel>();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                allAds = allAds.Where(ad => ad.Title.Contains(searchString)
-                                       || ad.Description.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    allAds = allAds.OrderByDescending(ad => ad.Title);
-                    break;
-                case "Date":
-                    allAds = allAds.OrderBy(ad => ad.CreatedOn);
-                    break;
-                case "date_desc":
-                    allAds = allAds.OrderByDescending(ad => ad.CreatedOn);
-                    break;
-                default:  // by date 
-                    allAds = allAds.OrderBy(ad => ad.CreatedOn);
-                    break;
-            }
-
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(allAds.ToPagedList(pageNumber, pageSize));
+            var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 3);
+            return View(model);
         }
 
         public ActionResult Stats()

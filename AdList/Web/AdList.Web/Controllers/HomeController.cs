@@ -10,23 +10,18 @@
     using PagedList;
     using System.Linq;
 
-    public class HomeController : Controller
+    public class HomeController : AdsPagingControllerBase
     {
-        private readonly IDeletableEntityRepository<Ad> ads;
-
         public HomeController(IDeletableEntityRepository<Ad> ads)
+            :base(ads)
         {
-            this.ads = ads;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            int pageSize = 12;
-            int pageNumber = 1;
-            var model = this.ads.All().Project().To<AdDetailViewModel>();
-            model = model.OrderBy(ad => ad.CreatedOn);
-
-            return this.View(model.ToPagedList(pageNumber, pageSize));
+            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 6);
+            return this.View(model);
         }
     }
 }

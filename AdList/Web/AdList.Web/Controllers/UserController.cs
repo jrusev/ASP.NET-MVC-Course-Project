@@ -16,10 +16,10 @@ using AdList.Web.ViewModels.Ads;
 
 namespace AdList.Web.Controllers
 {
-    public class UserController : Controller
+    public class UserController : AdsPagingControllerBase
     {
         public UserController(DbContext context)
-            : base()
+            : base(null)
         {
             this.UserManager = new UserManager<User>(new UserStore<User>(context));
         }
@@ -31,7 +31,7 @@ namespace AdList.Web.Controllers
 
         // GET: User/Ads
         [Authorize]
-        public ActionResult MyAds()
+        public ActionResult MyAds(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var currentUser = UserManager.FindById(User.Identity.GetUserId());
             if (currentUser == null)
@@ -39,6 +39,7 @@ namespace AdList.Web.Controllers
                 return this.HttpNotFound("User not found!");
             }
 
+            var myAds = currentUser.Ads.AsQueryable().Project().To<AdDetailViewModel>();
             var model = new UserProfileViewModel()
             {
                 UserName = currentUser.UserName,
@@ -48,7 +49,7 @@ namespace AdList.Web.Controllers
                 ImageUrl = currentUser.ImageUrl,
                 PhoneNumber = currentUser.PhoneNumber,
                 CreatedOn = currentUser.CreatedOn,
-                Ads = currentUser.Ads.AsQueryable().Project().To<AdDetailViewModel>()
+                Ads = this.GetAds(myAds, sortOrder, currentFilter, searchString, page, pageSize: 12)
             };
 
             
@@ -56,7 +57,7 @@ namespace AdList.Web.Controllers
         }
 
         // GET: User/GetById/{id}
-        public ActionResult GetById(string id)
+        public ActionResult GetById(string id, string sortOrder, string currentFilter, string searchString, int? page)
         {
             var user = UserManager.FindById(id);
             if (user == null)
@@ -64,6 +65,7 @@ namespace AdList.Web.Controllers
                 return this.HttpNotFound("User not found!");
             }
 
+            var userAds = user.Ads.AsQueryable().Project().To<AdDetailViewModel>();
             var model = new UserProfileViewModel()
             {
                 UserName = user.UserName,
@@ -73,7 +75,7 @@ namespace AdList.Web.Controllers
                 ImageUrl = user.ImageUrl,
                 PhoneNumber = user.PhoneNumber,
                 CreatedOn = user.CreatedOn,
-                Ads = user.Ads.AsQueryable().Project().To<AdDetailViewModel>()
+                Ads = this.GetAds(userAds, sortOrder, currentFilter, searchString, page, pageSize: 12)
             };
 
             return View(model);

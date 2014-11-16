@@ -1,54 +1,59 @@
 ﻿@model AdList.Web.ViewModels.Category.CategoryViewModel
-@{
-    ViewBag.Title = Model.CategoryName;
-}
-<section>
-    <div>
-        <div class="container">
-            <div class="row text-center">
-                <h1 class="ng-binding">@Model.CategoryName</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
-                    {
-                        <div class="input-group">
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })
-                            <div class="input-group-btn">
-                                <button type="submit" value="Search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+@using PagedList.Mvc
+    @{
+        ViewBag.Title = Model.CategoryName;
+    }
+    <section>
+        <div>
+            <div class="container">
+                <div class="row text-center">
+                    <h1 class="ng-binding">@Model.CategoryName</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
+                        {
+                            <div class="input-group">
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })
+                                <div class="input-group-btn">
+                                    <button type="submit" value="Search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
                             </div>
-                        </div>
-                    }
-                </div>
-                <div class="col-md-4">
-                    <ul class="sort-links">
-                        <li>Sorty by:</li>
-                        <li>@Html.ActionLink("Title", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.NameSortParm }, null)</li>
-                        <li>@Html.ActionLink("Date", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.DateSortParm }, null)</li>
-
-                    </ul>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="list-group">
-                        @{
-                            foreach (var category in Model.Categories)
-                            {
-                                <a href="/category/@category.Name" class="list-group-item">@category.Name</a>
-                            }
                         }
                     </div>
+                    <div class="col-md-4">
+                        <ul class="sort-links">
+                            <li>Sorty by:</li>
+                            <li>@Html.ActionLink("Title", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.NameSortParm }, null)</li>
+                            <li>@Html.ActionLink("Date", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.DateSortParm }, null)</li>
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    @Html.Partial("_AdsPartial", Model.Ads)
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="list-group">
+                            @{
+                                foreach (var category in Model.Categories)
+                                {
+                                    <a href="/category/@category.Name" class="list-group-item">@category.Name</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.Partial("_AdsPartial", Model.Ads)
 
-                    <br />
+                        <br />
 
-                    @Html.Partial("_PagingPartial", Model.Ads)
+                        Page @(Model.Ads.PageCount < Model.Ads.PageNumber ? 0 : Model.Ads.PageNumber) of @Model.Ads.PageCount
+
+                        @Html.PagedListPager(Model.Ads, page => Url.Action("Index", "Category",
+                            new { name = Model.CategoryName, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }
+                        , null))
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>

@@ -29,7 +29,7 @@
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var allAds = this.ads.All().Project().To<AdDetailViewModel>();
-            var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 3);
+            var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 6);
             return View(model);
         }
 

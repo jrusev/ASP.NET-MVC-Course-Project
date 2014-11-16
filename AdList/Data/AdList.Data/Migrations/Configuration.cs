@@ -80,46 +80,7 @@ namespace AdList.Data.Migrations
                 context.SaveChanges();
             }
 
-            // Ads
-            if (context.Ads.Count() < 3)
-            {
-                // ATTENTION: DELETES ALL ADS
-                context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Ads]");
-
-                var ads = new List<Ad>()
-                {
-                    new Ad() { 
-                        Title = "iPhone 5S like new",
-                        Description = "I am buying the new iPhone 6, so selling this one.",
-                        Category = context.Categories.FirstOrDefault(c => c.Name == "Phones"),
-                        Price = 300,
-                        Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
-                        ImageUrl = "iPhone-5-White-Design.jpg"
-                    },
-                    new Ad() { 
-                        Title = "MacBook Air 13\"",
-                        Description = "Selling my old mac...",
-                        Category = context.Categories.FirstOrDefault(c => c.Name == "Computers"),
-                        Price = 890,
-                        Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
-                        ImageUrl = "MacBook_Air_13-inch_35330106_01_620x433.jpg"
-                    },
-                    new Ad() { 
-                        Title = "Monet reproduction",
-                        Description = "I bought this from an online auction for $1000.",
-                        Category = context.Categories.FirstOrDefault(c => c.Name == "Art"),
-                        Price = 500,
-                        Featured = true,
-                        Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
-                        ImageUrl = "monet001.jpg"
-                    },
-                };
-
-                context.Ads.AddOrUpdate(ads.ToArray());
-                context.SaveChanges();
-            }            
+            AdSeeder.Seed(context);        
         }
     }
 }

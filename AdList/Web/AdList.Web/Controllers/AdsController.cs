@@ -32,17 +32,9 @@
             var model = new HomeViewModel();
 
             var allAds = this.ads.All().Project().To<AdDetailViewModel>();
-            model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page);
+            model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize:6);
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
-        }
-
-        [Authorize(Roles = "Administrator")]
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-        {
-            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
-            var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 3);
-            return View(model);
         }
 
         public ActionResult Stats()

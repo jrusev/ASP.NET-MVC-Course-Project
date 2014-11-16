@@ -1,5 +1,3 @@
-- Home
-    - Search
 - Paging, Sorting, Searching
 - Edit ads
 - Edit user profile

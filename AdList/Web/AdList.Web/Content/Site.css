@@ -26,40 +26,40 @@ textarea {
 
 .navbar-brand b {
     font-size: 28px;
-	font-family: 'Mistral', cursive;
-	font-weight:400;
+    font-family: 'Mistral', cursive;
+    font-weight: 400;
 }
 
 #logo-title {
-  font-family: mistral;
-  color: #f39;
+    font-family: mistral;
+    color: #f39;
 }
 
 .ratings {
-  padding-right: 10px;
-  padding-left: 10px;
-  color: #d17581;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
 }
 
 .table tr td img {
-  width: 140px;
-  height: 140px;
+    width: 140px;
+    height: 140px;
 }
 
 .truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ratio {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 70%; /* % of width, defines aspect ratio*/
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 70%; /* % of width, defines aspect ratio*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 .logo-subtitle {
@@ -67,4 +67,12 @@ textarea {
     font-style: italic;
 }
 
+.sort-links {
+    padding-top: 16px;
+}
 
+.sort-links > li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 10px 0 0;
+}

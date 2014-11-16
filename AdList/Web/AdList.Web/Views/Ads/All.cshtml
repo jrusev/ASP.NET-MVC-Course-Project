@@ -8,7 +8,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     @using (Html.BeginForm("All", "Ads", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
                     {
                         <div class="input-group">
@@ -19,16 +19,12 @@
                         </div>
                     }
                 </div>
-                <div class="col-md-4">
-                    <form role="search" class="navbar-form">
-                        <select class="form-control">
-                            <option value="-published">Newest</option>
-                            <option value="published">Oldest</option>
-                            <option value="price">Low price</option>
-                            <option value="-price">High price</option>
-                            <option value="title">Title</option>
-                        </select>
-                    </form>
+                <div class="col-md-3">
+                    <ul class="sort-links">
+                        <li>Sorty by:</li>
+                        <li>@Html.ActionLink("Title", "All", new { sortOrder = ViewBag.NameSortParm })</li>
+                        <li>@Html.ActionLink("Date", "All", new { sortOrder = ViewBag.DateSortParm })</li>
+                    </ul>
                 </div>
             </div>
             <br>

@@ -1,4 +1,5 @@
 ﻿@model AdList.Web.ViewModels.Home.HomeViewModel
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "All Ads";
 }
@@ -7,12 +8,16 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <form role="search" class="navbar-form"></form>
-                    <div class="input-group">
-                        <input type="text" placeholder="Search" name="q" class="form-control">
-                        <div class="input-group-btn"><button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button></div>
-                    </div>
+                <div class="col-md-4">                    
+                    @using (Html.BeginForm("All", "Ads", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })                            
+                            <div class="input-group-btn">
+                                <button type="submit" value="Search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div class="col-md-4">
                     <form role="search" class="navbar-form">

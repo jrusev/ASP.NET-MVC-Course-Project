@@ -474,9 +474,11 @@
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Ads\Stats.cshtml" />
     <Content Include="Views\Shared\_PagingPartial.cshtml" />
+    <Content Include="Views\Ads\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

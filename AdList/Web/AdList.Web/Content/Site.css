@@ -71,8 +71,9 @@ textarea {
     padding-top: 16px;
 }
 
-.sort-links > li {
-    list-style-type: none;
-    display: inline-block;
-    margin: 0 10px 0 0;
-}
+    .sort-links > li {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0 10px 0 0;
+    }
+

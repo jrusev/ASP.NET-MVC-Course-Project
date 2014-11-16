@@ -34,7 +34,7 @@
         }
 
         // GET: Admin/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             var ad = this.ads.All().FirstOrDefault(x => x.Id == id);

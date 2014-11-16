@@ -10,11 +10,12 @@
 
     public class CategoryController : AdsPagingControllerBase
     {
+        protected readonly IDeletableEntityRepository<Ad> ads;
         private readonly IDeletableEntityRepository<Category> categories;
 
         public CategoryController(IDeletableEntityRepository<Ad> ads, IDeletableEntityRepository<Category> categories)
-            :base(ads)
         {
+            this.ads = ads;
             this.categories = categories;
         }
 

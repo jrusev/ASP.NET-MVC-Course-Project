@@ -1,24 +1,20 @@
 ﻿namespace AdList.Web.Controllers
 {
-    using AdList.Data.Common.Repository;
-    using AdList.Data.Models;
     using System;
     using System.Linq;
     using System.Web.Mvc;
     using AdList.Web.ViewModels.Ads;
-    using AutoMapper.QueryableExtensions;
     using PagedList;
 
     public abstract class AdsPagingControllerBase : Controller
     {
-        protected readonly IDeletableEntityRepository<Ad> ads;
-
-        public AdsPagingControllerBase(IDeletableEntityRepository<Ad> ads)
-        {
-            this.ads = ads;
-        }
-
-        protected IPagedList<AdDetailViewModel> GetAds(IQueryable<AdDetailViewModel> allAds, string sortOrder, string currentFilter, string searchString, int? page, int pageSize)
+        protected IPagedList<AdDetailViewModel> GetAds(
+            IQueryable<AdDetailViewModel> allAds,
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? page,
+            int pageSize)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -34,8 +30,6 @@
             }
 
             ViewBag.CurrentFilter = searchString;
-
-            //var allAds = this.ads.All().Project().To<AdDetailViewModel>();
 
             if (!String.IsNullOrEmpty(searchString))
             {

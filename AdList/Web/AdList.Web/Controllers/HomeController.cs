@@ -12,9 +12,11 @@
 
     public class HomeController : AdsPagingControllerBase
     {
+        protected readonly IDeletableEntityRepository<Ad> ads;
+
         public HomeController(IDeletableEntityRepository<Ad> ads)
-            :base(ads)
         {
+            this.ads = ads;
         }
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)

@@ -15,16 +15,16 @@
 
     public class AdsController : AdsPagingControllerBase
     {
+        protected readonly IDeletableEntityRepository<Ad> ads;
         private readonly IDeletableEntityRepository<Category> categories;
-
         private readonly ISanitizer sanitizer;
 
         public AdsController(
             IDeletableEntityRepository<Ad> ads,
             IDeletableEntityRepository<Category> categories,
             ISanitizer sanitizer)
-            :base(ads)
         {
+            this.ads = ads;
             this.categories = categories;
             this.sanitizer = sanitizer;
         }

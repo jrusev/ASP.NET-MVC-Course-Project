@@ -19,7 +19,6 @@ namespace AdList.Web.Controllers
     public class UserController : AdsPagingControllerBase
     {
         public UserController(DbContext context)
-            : base(null)
         {
             this.UserManager = new UserManager<User>(new UserStore<User>(context));
         }

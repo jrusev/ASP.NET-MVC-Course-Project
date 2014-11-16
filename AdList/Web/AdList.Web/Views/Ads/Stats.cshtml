@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AdList.Web.ViewModels.Ads.AdsStatsView>
+
+@{
+    ViewBag.Title = "Stats";
+}
+
+<h2>Ads by day</h2>
+<br />
+
+<div class="col-md-3">
+    <table class="table table-striped">
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Ads
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @item.AdCount
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+

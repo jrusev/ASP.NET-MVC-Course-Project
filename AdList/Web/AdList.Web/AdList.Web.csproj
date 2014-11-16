@@ -215,6 +215,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Ads\AdsStatsView.cs" />
     <Compile Include="ViewModels\Category\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
@@ -470,6 +471,7 @@
     <Content Include="Views\Shared\_AdsPartial.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Ads\Index.cshtml" />
+    <Content Include="Views\Ads\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

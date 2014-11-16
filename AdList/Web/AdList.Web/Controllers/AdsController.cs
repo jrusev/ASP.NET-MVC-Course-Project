@@ -87,6 +87,18 @@ namespace AdList.Web.Controllers
             //return View(this.ads.All().Project().To<AdDetailViewModel>());
         }
 
+        public ActionResult Stats()
+        {
+            var stats = from ad in this.ads.All()
+                        group ad by ad.CreatedOn into dateGroup
+                        select new AdsStatsView()
+                        {
+                            CreatedOn = dateGroup.Key,
+                            AdCount = dateGroup.Count()
+                        };
+            return View(stats.ToList());
+        }
+
         // /ads/details/7
         public ActionResult Details(int id, int page = 1)
         {

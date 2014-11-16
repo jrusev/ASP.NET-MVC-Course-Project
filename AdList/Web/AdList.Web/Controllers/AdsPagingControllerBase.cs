@@ -8,13 +8,15 @@
 
     public abstract class AdsPagingControllerBase : Controller
     {
+        private const int DefaultPageSize = 3;
+
         protected IPagedList<AdDetailViewModel> GetAds(
             IQueryable<AdDetailViewModel> allAds,
             string sortOrder,
             string currentFilter,
             string searchString,
             int? page,
-            int pageSize)
+            int pageSize = DefaultPageSize)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";

@@ -8,11 +8,11 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">                    
+                <div class="col-md-4">
                     @using (Html.BeginForm("All", "Ads", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
                     {
                         <div class="input-group">
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })                            
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })
                             <div class="input-group-btn">
                                 <button type="submit" value="Search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
@@ -44,26 +44,15 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
-                        <ul>
-                            <li  class="disabled">
-                                <a ng-click="selectPage(page.number)">First</a>
-                            </li>
-                        </ul>
-                    </div>
 
                     @Html.Partial("_AdsPartial", Model.Ads)
 
-                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
-                        <ul>
-                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >First</a></li>
-                            <li  class="ng-scope disabled"><a ng-click="selectPage(page.number)" >Previous</a></li>
-                            <li  class="ng-scope active"><a ng-click="selectPage(page.number)" >1</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >2</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Next</a></li>
-                            <li  class="ng-scope"><a ng-click="selectPage(page.number)" >Last</a></li>
-                        </ul>
-                    </div>
+                    <br />
+                    Page @(Model.Ads.PageCount < Model.Ads.PageNumber ? 0 : Model.Ads.PageNumber) of @Model.Ads.PageCount
+
+                    @Html.PagedListPager(Model.Ads, page => Url.Action("All",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
                 </div>
             </div>
         </div>

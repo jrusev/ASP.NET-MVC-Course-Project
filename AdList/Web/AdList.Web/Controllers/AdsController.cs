@@ -34,7 +34,7 @@
             var model = new HomeViewModel();
 
             var allAds = this.ads.All().Project().To<AdDetailViewModel>();
-            model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 12);
+            model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page);
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }

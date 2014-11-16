@@ -1,10 +1,9 @@
-- Messages
-
-- UoW
 - more ads
+- Messages
+- UoW
 - image upload
 
 // optional
-- Administration
 - Edit ads
+- Delete ads
 - Edit user profile

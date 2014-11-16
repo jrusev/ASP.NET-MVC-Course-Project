@@ -473,6 +473,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Ads\Stats.cshtml" />
+    <Content Include="Views\Shared\_PagingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

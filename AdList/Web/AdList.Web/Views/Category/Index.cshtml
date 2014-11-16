@@ -9,23 +9,24 @@
                 <h1 class="ng-binding">@Model.CategoryName</h1>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <form role="search" class="navbar-form"></form>
-                    <div class="input-group">
-                        <input type="text" placeholder="Search" name="q" class="form-control">
-                        <div class="input-group-btn"><button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button></div>
-                    </div>
+                <div class="col-md-3">
+                    @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { @class = "navbar-form", role = "search" }))
+                    {
+                        <div class="input-group">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Search" })
+                            <div class="input-group-btn">
+                                <button type="submit" value="Search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div class="col-md-4">
-                    <form role="search" class="navbar-form">
-                        <select class="form-control">
-                            <option value="-published">Newest</option>
-                            <option value="published">Oldest</option>
-                            <option value="price">Low price</option>
-                            <option value="-price">High price</option>
-                            <option value="title">Title</option>
-                        </select>
-                    </form>
+                    <ul class="sort-links">
+                        <li>Sorty by:</li>
+                        <li>@Html.ActionLink("Title", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.NameSortParm }, null)</li>
+                        <li>@Html.ActionLink("Date", "Index", "Category", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.DateSortParm }, null)</li>
+
+                    </ul>
                 </div>
             </div>
             <br>
@@ -41,26 +42,11 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
-                        <ul>
-                            <li class="disabled">
-                                <a ng-click="selectPage(page.number)">First</a>
-                            </li>
-                        </ul>
-                    </div>
-
                     @Html.Partial("_AdsPartial", Model.Ads)
 
-                    <div class="pagination ng-isolate-scope" data-pagination="" data-num-pages="numPages()" data-current-page="currentPage" data-max-size="maxSize" data-boundary-links="true">
-                        <ul>
-                            <li class="ng-scope disabled"><a ng-click="selectPage(page.number)">First</a></li>
-                            <li class="ng-scope disabled"><a ng-click="selectPage(page.number)">Previous</a></li>
-                            <li class="ng-scope active"><a ng-click="selectPage(page.number)">1</a></li>
-                            <li class="ng-scope"><a ng-click="selectPage(page.number)">2</a></li>
-                            <li class="ng-scope"><a ng-click="selectPage(page.number)">Next</a></li>
-                            <li class="ng-scope"><a ng-click="selectPage(page.number)">Last</a></li>
-                        </ul>
-                    </div>
+                    <br />
+
+                    @Html.Partial("_PagingPartial", Model.Ads)
                 </div>
             </div>
         </div>

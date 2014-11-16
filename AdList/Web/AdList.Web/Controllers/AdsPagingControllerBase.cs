@@ -35,8 +35,8 @@
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                allAds = allAds.Where(ad => ad.Title.Contains(searchString)
-                                       || ad.Description.Contains(searchString));
+                allAds = allAds.Where(ad => ad.Title.ToLower().Contains(searchString.ToLower())
+                                       || ad.Description.ToLower().Contains(searchString.ToLower()));
             }
             switch (sortOrder)
             {

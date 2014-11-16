@@ -1,4 +1,3 @@
-- Paging, Sorting, Searching
 - Edit ads
 - Edit user profile
 - Administration

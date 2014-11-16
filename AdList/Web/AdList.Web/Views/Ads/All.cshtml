@@ -19,7 +19,7 @@
                         </div>
                     }
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <ul class="sort-links">
                         <li>Sorty by:</li>
                         <li>@Html.ActionLink("Title", "All", "Ads", new { SearchString = ViewBag.CurrentFilter as string, sortOrder = ViewBag.NameSortParm }, null)</li>
@@ -45,11 +45,8 @@
                     @Html.Partial("_AdsPartial", Model.Ads)
 
                     <br />
-                    Page @(Model.Ads.PageCount < Model.Ads.PageNumber ? 0 : Model.Ads.PageNumber) of @Model.Ads.PageCount
 
-                    @Html.PagedListPager(Model.Ads, page => Url.Action("All",
-                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-
+                    @Html.Partial("_PagingPartial", Model.Ads)
                 </div>
             </div>
         </div>

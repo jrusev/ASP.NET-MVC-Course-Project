@@ -22,6 +22,7 @@
                       "~/Content/bootstrap.css",
                       //"~/Content/bootstrap-theme.css",
                       "~/Content/font-awesome.min.css",
+                      "~/Content/PagedList.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

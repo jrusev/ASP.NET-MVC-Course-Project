@@ -11,6 +11,7 @@ using AutoMapper.QueryableExtensions;
 using AdList.Web.Infrastructure;
 using Microsoft.AspNet.Identity;
 using AdList.Web.ViewModels.Home;
+using PagedList;
 
 namespace AdList.Web.Controllers
 {
@@ -37,6 +38,53 @@ namespace AdList.Web.Controllers
             model.Ads = this.ads.All().Project().To<HomeAdViewModel>();
             model.Categories = this.categories.All().OrderBy(x => x.Name);
             return this.View(model);
+        }
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                allAds = allAds.Where(ad => ad.Title.Contains(searchString)
+                                       || ad.Description.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    allAds = allAds.OrderByDescending(ad => ad.Title);
+                    break;
+                case "Date":
+                    allAds = allAds.OrderBy(ad => ad.CreatedOn);
+                    break;
+                case "date_desc":
+                    allAds = allAds.OrderByDescending(ad => ad.CreatedOn);
+                    break;
+                default:  // Name ascending 
+                    allAds = allAds.OrderBy(ad => ad.CreatedOn);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(allAds.ToPagedList(pageNumber, pageSize));
+
+            //return View(this.ads.All().Project().To<AdDetailViewModel>());
         }
 
         // /ads/details/7

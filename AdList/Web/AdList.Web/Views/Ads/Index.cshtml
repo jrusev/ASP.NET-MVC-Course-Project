@@ -24,13 +24,10 @@
 <table class="table">
     <tr>
         <th>
-            Author
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             Category
-        </th>
-        <th>
-            Title
         </th>
         <th>
             Description
@@ -39,10 +36,13 @@
             Price
         </th>
         <th>
+            @Html.ActionLink("Created On", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
             Featured
         </th>
         <th>
-            Created On
+            Author
         </th>
         <th>
             Action
@@ -53,13 +53,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.FirstName) @Html.DisplayFor(modelItem => item.Author.LastName)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @String.Format("{0}", @item.Description.Length > 50 ? @item.Description.Substring(0, 50) + "..." : @item.Description)
@@ -69,10 +66,13 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
+                @item.CreatedOn.ToString("dd MMM yyyy HH:mm")
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Featured)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
+                @Html.DisplayFor(modelItem => item.Author.FirstName) @Html.DisplayFor(modelItem => item.Author.LastName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

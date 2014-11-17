@@ -1,8 +1,12 @@
 - Messages
 - UoW
 - image upload
-
+- editor or display templates
+- two MVC Area
+- AJAX form
+- unit tests
 // optional
-- Edit ads (plus links on User/MyAds0
+- Edit ads (plus links on User/MyAds0)
 - Delete ads
 - Edit user profile
+- Use caching where appropriate

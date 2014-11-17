@@ -52,10 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="ApplicationDbContext-old.cs" />
     <Compile Include="Migrations\AdSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="UnitOfWork\DataProvider.cs" />
+    <Compile Include="UnitOfWork\IDataProvider.cs" />
+    <Compile Include="UnitOfWork\IDbContext.cs" />
+    <Compile Include="UnitOfWork\IRepository.cs" />
+    <Compile Include="UnitOfWork\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdList.Data.Common\AdList.Data.Common.csproj">

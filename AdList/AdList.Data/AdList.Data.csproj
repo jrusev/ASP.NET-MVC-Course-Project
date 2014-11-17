@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext-old.cs" />
     <Compile Include="Migrations\AdSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,10 +63,6 @@
     <Compile Include="UnitOfWork\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdList.Data.Common\AdList.Data.Common.csproj">
-      <Project>{a22bf89d-5df2-44e9-91a7-ef6b0e06267c}</Project>
-      <Name>AdList.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AdList.Data.Models\AdList.Data.Models.csproj">
       <Project>{a7955605-c766-4fdd-ad10-ebaa8f526043}</Project>
       <Name>AdList.Data.Models</Name>

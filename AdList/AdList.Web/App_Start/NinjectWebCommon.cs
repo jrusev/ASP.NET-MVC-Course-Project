@@ -8,7 +8,6 @@ namespace AdList.Web
     using System.Web;
 
     using AdList.Data;
-    using AdList.Data.Common.Repository;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -16,6 +15,7 @@ namespace AdList.Web
     using Ninject.Web.Common;
     using AdList.Data.Models;
     using AdList.Web.Infrastructure;
+    using AdList.Data.UnitOfWork;
 
     public static class NinjectWebCommon 
     {
@@ -69,14 +69,16 @@ namespace AdList.Web
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
 
-            kernel.Bind(typeof(IRepository<Ad>)).To(typeof(DeletableEntityRepository<Ad>));
-            kernel.Bind(typeof(IRepository<Category>)).To(typeof(DeletableEntityRepository<Category>));
+            kernel.Bind(typeof(IRepository<Ad>)).To(typeof(Repository<Ad>));
+            kernel.Bind(typeof(IRepository<Category>)).To(typeof(Repository<Category>));
 
-            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
-
-            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
 
             kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
+
+            kernel.Bind<IDataProvider>()
+                    .To<DataProvider>()
+                    .WithConstructorArgument("context", c => new ApplicationDbContext());
         }
     }
 }

@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
 
-    public class Ad : AuditInfo, IDeletableEntity
+    public class Ad : AuditInfo
     {
         public int Id { get; set; }
 
@@ -17,10 +17,6 @@
         public virtual User Author { get; set; }
  
         public string Description { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
 
         public int CategoryId { get; set; }
 

@@ -8,7 +8,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using AdList.Data.Models;
     using AdList.Data.Migrations;
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
     using AdList.Data.UnitOfWork;
 
     public class ApplicationDbContext : IdentityDbContext<User>, IDbContext

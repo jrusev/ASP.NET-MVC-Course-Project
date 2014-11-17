@@ -1,5 +1,4 @@
 - Messages
-- UoW
 - image upload
 - editor or display templates
 - two MVC Area

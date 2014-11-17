@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
 
     public interface IRepository<T> where T : class, IAuditInfo
     {

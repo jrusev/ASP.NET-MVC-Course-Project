@@ -7,18 +7,19 @@ using System.Web.Mvc;
 using AdList.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using AdList.Data.Common.Repository;
 using AdList.Data;
 using System.Data.Entity;
 using AdList.Web.ViewModels.User;
 using AutoMapper.QueryableExtensions;
 using AdList.Web.ViewModels.Ads;
+using AdList.Data.UnitOfWork;
 
 namespace AdList.Web.Controllers
 {
     public class UserController : AdsPagingControllerBase
     {
-        public UserController(DbContext context)
+        public UserController(DbContext context, IDataProvider provider)
+            :base(provider)
         {
             this.UserManager = new UserManager<User>(new UserStore<User>(context));
         }

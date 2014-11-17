@@ -5,13 +5,13 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
 
-    public class User : IdentityUser, IAuditInfo, IDeletableEntity
+    public class User : IdentityUser, IAuditInfo
     {
         public User()
         {
@@ -32,9 +32,6 @@
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
-
-        [Index]
-        public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
 

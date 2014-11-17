@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using AdList.Data.Models;
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
 
     public class DataProvider : IDataProvider
     {

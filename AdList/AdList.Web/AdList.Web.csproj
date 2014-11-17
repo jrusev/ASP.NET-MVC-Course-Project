@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AdsPagingControllerBase.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="InputModels\Ads\AdInputModel.cs" />
@@ -486,10 +487,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdList.Data.Common\AdList.Data.Common.csproj">
-      <Project>{a22bf89d-5df2-44e9-91a7-ef6b0e06267c}</Project>
-      <Name>AdList.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AdList.Data.Models\AdList.Data.Models.csproj">
       <Project>{a7955605-c766-4fdd-ad10-ebaa8f526043}</Project>
       <Name>AdList.Data.Models</Name>

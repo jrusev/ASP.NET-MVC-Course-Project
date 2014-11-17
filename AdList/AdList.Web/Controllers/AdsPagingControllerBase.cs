@@ -5,10 +5,16 @@
     using System.Web.Mvc;
     using AdList.Web.ViewModels.Ads;
     using PagedList;
+    using AdList.Data.UnitOfWork;
 
-    public abstract class AdsPagingControllerBase : Controller
+    public abstract class AdsPagingControllerBase : BaseController
     {
         private const int DefaultPageSize = 3;
+
+        public AdsPagingControllerBase(IDataProvider provider)
+            :base(provider)
+        {
+        }
 
         protected IPagedList<AdDetailViewModel> GetAds(
             IQueryable<AdDetailViewModel> allAds,

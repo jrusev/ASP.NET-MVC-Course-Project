@@ -4,24 +4,22 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using AdList.Data.Common.Repository;
     using AdList.Data.Models;
     using AdList.Web.ViewModels.Ads;
     using PagedList;
     using System.Linq;
+    using AdList.Data.UnitOfWork;
 
     public class HomeController : AdsPagingControllerBase
     {
-        protected readonly IDeletableEntityRepository<Ad> ads;
-
-        public HomeController(IDeletableEntityRepository<Ad> ads)
+        public HomeController(IDataProvider provider)
+            :base(provider)
         {
-            this.ads = ads;
         }
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var allAds = this.ads.All().Where(a => a.Featured == true).Project().To<AdDetailViewModel>();
+            var allAds = this.Data.Ads.All().Where(a => a.Featured == true).Project().To<AdDetailViewModel>();
             var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 6);
             return this.View(model);
         }

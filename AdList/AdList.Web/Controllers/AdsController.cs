@@ -1,6 +1,5 @@
 ﻿namespace AdList.Web.Controllers
 {
-    using AdList.Data.Common.Repository;
     using AdList.Data.Models;
     using AdList.Web.InputModels.Ads;
     using System.Linq;
@@ -10,36 +9,41 @@
     using AdList.Web.Infrastructure;
     using Microsoft.AspNet.Identity;
     using AdList.Web.ViewModels.Home;
+    using AdList.Data.UnitOfWork;
 
     public class AdsController : AdsPagingControllerBase
     {
-        protected readonly IDeletableEntityRepository<Ad> ads;
-        private readonly IDeletableEntityRepository<Category> categories;
         private readonly ISanitizer sanitizer;
 
-        public AdsController(
-            IDeletableEntityRepository<Ad> ads,
-            IDeletableEntityRepository<Category> categories,
-            ISanitizer sanitizer)
+        public AdsController(IDataProvider provider, ISanitizer sanitizer)
+            :base(provider)
         {
-            this.ads = ads;
-            this.categories = categories;
             this.sanitizer = sanitizer;
         }
+
+        //public AdsController(
+        //    IDeletableEntityRepository<Ad> ads,
+        //    IDeletableEntityRepository<Category> categories,
+        //    ISanitizer sanitizer)
+        //{
+        //    this.ads = ads;
+        //    this.categories = categories;
+        //    this.sanitizer = sanitizer;
+        //}
 
         public ActionResult All(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var model = new HomeViewModel();
 
-            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            var allAds = this.Data.Ads.All().Project().To<AdDetailViewModel>();
             model.Ads = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize:6);
-            model.Categories = this.categories.All().OrderBy(x => x.Name);
+            model.Categories = this.Data.Categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
 
         public ActionResult Stats()
         {
-            var stats = from ad in this.ads.All()
+            var stats = from ad in this.Data.Ads.All()
                         group ad by ad.CreatedOn into dateGroup
                         select new AdsStatsView()
                         {
@@ -52,7 +56,7 @@
         // /ads/details/7
         public ActionResult Details(int id, int page = 1)
         {
-            var adViewModel = this.ads.All().Where(x => x.Id == id)
+            var adViewModel = this.Data.Ads.All().Where(x => x.Id == id)
                 .Project().To<AdDetailViewModel>().FirstOrDefault();
 
             if (adViewModel == null)
@@ -68,7 +72,7 @@
         public ActionResult Create()
         {
             var model = new AdInputModel();
-            model.CategoryOptions = this.categories.All().OrderBy(x => x.Name);
+            model.CategoryOptions = this.Data.Categories.All().OrderBy(x => x.Name);
             return this.View(model);
         }
 
@@ -91,8 +95,8 @@
                         ImageUrl = input.ImageUrl
                     };
 
-                this.ads.Add(ad);
-                this.ads.SaveChanges();
+                this.Data.Ads.Add(ad);
+                this.Data.Ads.SaveChanges();
                 return this.RedirectToAction("Details", new { id = ad.Id, url = "new" });
             }
 

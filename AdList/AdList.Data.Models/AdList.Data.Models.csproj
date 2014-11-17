@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\AuditInfo.cs" />
+    <Compile Include="Base\IAuditInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Ad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,12 +62,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AdList.Data.Common\AdList.Data.Common.csproj">
-      <Project>{a22bf89d-5df2-44e9-91a7-ef6b0e06267c}</Project>
-      <Name>AdList.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

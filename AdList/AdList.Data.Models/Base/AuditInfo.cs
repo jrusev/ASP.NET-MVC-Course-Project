@@ -1,21 +1,8 @@
-﻿namespace AdList.Data.Common.Models
+﻿namespace AdList.Data.Models.Base
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    //public abstract class AuditInfo : IAuditInfo
-    //{
-    //    public DateTime CreatedOn { get; set; }
-
-    //    /// <summary>
-    //    /// Specifies whether or not the CreatedOn property should be automatically set.
-    //    /// </summary>
-    //    [NotMapped]
-    //    public bool PreserveCreatedOn { get; set; }
-
-    //    public DateTime? ModifiedOn { get; set; }
-    //}
 
     public abstract class AuditInfo : IAuditInfo
     {

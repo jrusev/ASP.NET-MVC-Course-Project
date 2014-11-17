@@ -1,4 +1,4 @@
-﻿namespace AdList.Data.Common.Models
+﻿namespace AdList.Data.Models.Base
 {
     using System;
 

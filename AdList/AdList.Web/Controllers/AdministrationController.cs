@@ -1,6 +1,5 @@
 ﻿namespace AdList.Web.Controllers
 {
-    using AdList.Data.Common.Repository;
     using AdList.Data.Models;
     using AdList.Web.InputModels.Ads;
     using System.Linq;
@@ -8,27 +7,22 @@
     using AdList.Web.ViewModels.Ads;
     using AutoMapper.QueryableExtensions;
     using AdList.Web.Infrastructure;
+    using AdList.Data.UnitOfWork;
 
     public class AdminController : AdsPagingControllerBase
     {
-        protected readonly IDeletableEntityRepository<Ad> ads;
-        private readonly IDeletableEntityRepository<Category> categories;
         private readonly ISanitizer sanitizer;
 
-        public AdminController(
-            IDeletableEntityRepository<Ad> ads,
-            IDeletableEntityRepository<Category> categories,
-            ISanitizer sanitizer)
+        public AdminController(IDataProvider provider, ISanitizer sanitizer)
+            :base(provider)
         {
-            this.ads = ads;
-            this.categories = categories;
             this.sanitizer = sanitizer;
         }
 
         [Authorize(Roles = "Administrator")]
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            var allAds = this.Data.Ads.All().Project().To<AdDetailViewModel>();
             var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 6);
             return View(model);
         }
@@ -37,7 +31,7 @@
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
-            var ad = this.ads.All().FirstOrDefault(x => x.Id == id);
+            var ad = this.Data.Ads.All().FirstOrDefault(x => x.Id == id);
             if (ad == null)
             {
                 return this.HttpNotFound("No ad with such id!");
@@ -51,7 +45,7 @@
                 ImageUrl = ad.ImageUrl,
                 CategoryId = ad.CategoryId
             };
-            model.CategoryOptions = this.categories.All().OrderBy(x => x.Name);
+            model.CategoryOptions = this.Data.Categories.All().OrderBy(x => x.Name);
 
             return this.View(model);
         }

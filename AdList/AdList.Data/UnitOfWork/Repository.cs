@@ -4,7 +4,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    using AdList.Data.Common.Models;
+    using AdList.Data.Models.Base;
 
     public class Repository<T> : IRepository<T> where T : class, IAuditInfo
     {

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data.Models", "Data\AdList.Data.Models\AdList.Data.Models.csproj", "{A7955605-C766-4FDD-AD10-EBAA8F526043}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data.Models", "AdList.Data.Models\AdList.Data.Models.csproj", "{A7955605-C766-4FDD-AD10-EBAA8F526043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data", "Data\AdList.Data\AdList.Data.csproj", "{789E155B-8B00-4841-9EE2-79AFDBD7E60B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data", "AdList.Data\AdList.Data.csproj", "{789E155B-8B00-4841-9EE2-79AFDBD7E60B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Web", "Web\AdList.Web\AdList.Web.csproj", "{B07B0EE8-E4C5-4C1A-A654-82B8D0B242C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Web", "AdList.Web\AdList.Web.csproj", "{B07B0EE8-E4C5-4C1A-A654-82B8D0B242C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data.Common", "Data\AdList.Data.Common\AdList.Data.Common.csproj", "{A22BF89D-5DF2-44E9-91A7-EF6B0E06267C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Data.Common", "AdList.Data.Common\AdList.Data.Common.csproj", "{A22BF89D-5DF2-44E9-91A7-EF6B0E06267C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Web.Infrastructure", "Web\AdList.Web.Infrastructure\AdList.Web.Infrastructure.csproj", "{86CE0AEA-0F7E-4C82-98C2-E74D778B9FAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdList.Web.Infrastructure", "AdList.Web.Infrastructure\AdList.Web.Infrastructure.csproj", "{86CE0AEA-0F7E-4C82-98C2-E74D778B9FAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

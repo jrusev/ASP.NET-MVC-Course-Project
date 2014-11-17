@@ -1,3 +1,4 @@
+- fix Searach - should stay on the same path
 - Messages
 - UoW
 - image upload

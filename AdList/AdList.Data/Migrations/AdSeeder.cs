@@ -86,7 +86,7 @@ namespace AdList.Data.Migrations
                         Description = "Used for two of my babies.",
                         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Baby-gear").Id,
                         Price = 380,
-                        Featured = true,
+                        Featured = false,
                         Author = context.Users.FirstOrDefault(u => u.UserName == "user001@abv.bg"),
                         ImageUrl = "4moms-Origami-Stroller.jpg"
                     },

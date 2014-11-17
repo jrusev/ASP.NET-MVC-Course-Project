@@ -21,7 +21,7 @@
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var allAds = this.ads.All().Project().To<AdDetailViewModel>();
+            var allAds = this.ads.All().Where(a => a.Featured == true).Project().To<AdDetailViewModel>();
             var model = this.GetAds(allAds, sortOrder, currentFilter, searchString, page, pageSize: 6);
             return this.View(model);
         }

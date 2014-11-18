@@ -72,37 +72,9 @@
             return this.View(model);
         }
 
-        // POST: /Ads/Create
-        [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(AdInputModel input)
-        {
-            if (ModelState.IsValid)
-            {
-                var userId = this.User.Identity.GetUserId();
-
-                var ad = new Ad
-                    {
-                        Title = input.Title,
-                        Description = sanitizer.Sanitize(input.Description),
-                        AuthorId = userId,
-                        CategoryId = input.CategoryId,
-                        Price = input.Price,
-                        ImageUrl = input.ImageUrl
-                    };
-
-                this.Data.Ads.Add(ad);
-                this.Data.Ads.SaveChanges();
-                return this.RedirectToAction("Details", new { id = ad.Id, url = "new" });
-            }
-
-            return this.View(input);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateWithImage(AdInputModel input, HttpPostedFileBase imageUploaded)
+        public ActionResult Create(AdInputModel input, HttpPostedFileBase imageUploaded)
         {
             if (ModelState.IsValid)
             {

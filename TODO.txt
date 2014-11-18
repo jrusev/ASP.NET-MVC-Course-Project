@@ -1,13 +1,9 @@
 - image upload
-
-
 - AJAX form
-- unit tests
-
-- Messages
 - Edit user profile
-
 //
 - Enabl Delete for users
 - two MVC Area
 - editor templates
+- Messages - fix "new"
+- unit tests

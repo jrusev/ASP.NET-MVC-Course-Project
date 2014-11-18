@@ -1,4 +1,3 @@
-- Enabl Edit/Del for users
 - two MVC Area
 - image upload
 
@@ -9,3 +8,6 @@
 
 - Messages
 - Edit user profile
+
+//
+- Enabl Delete for users

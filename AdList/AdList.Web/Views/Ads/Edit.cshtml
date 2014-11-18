@@ -11,6 +11,7 @@
                 @Html.AntiForgeryToken()
 
                 @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
                 <fieldset>
                     <legend>Update ad</legend>
@@ -35,7 +36,7 @@
                             <div class="col-md-10">
                                 @Html.DropDownListFor(
                                 m => m.CategoryId,
-                                new SelectList(Model.CategoryOptions, "Id", "Name", Model.CategoryId),
+                                new SelectList(ViewBag.CategoryOptions, "Id", "Name", Model.CategoryId),
                                 new { @class = "form-control" })
                             </div>
                         </div>
@@ -56,7 +57,7 @@
 
                         <div class="pull-right">
                             <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
-                            <a href="/ads" class="btn btn-danger btn-lg">Cancel</a>
+                            <a href="/User/MyAds" class="btn btn-danger btn-lg">Cancel</a>
                         </div>
                     </div>
                     <div class="col-md-6"><img src="/images/@Model.ImageUrl" style="max-width: 100%;"></div>

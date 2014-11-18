@@ -1,12 +1,14 @@
 ﻿namespace AdList.Web.Controllers
 {
     using System.Web.Mvc;
+    using System.Linq;
 
     using AdList.Data.Models;
     using AdList.Data.UnitOfWork;
     using AdList.Web.Infrastructure;
 
     using Microsoft.AspNet.Identity;
+    using AdList.Web.ViewModels.Messages;
 
     public class MessagesController : BaseController
     {
@@ -18,10 +20,18 @@
             this.sanitizer = sanitizer;
         }
 
-        // GET: Messages
+        // GET: /Messages/Inbox
         public ActionResult Inbox()
         {
-            return View();
+            var inbox = new InboxViewModel() 
+            {
+                User = this.CurrentUser,
+                // TODO: return only this user's messages
+                Messages = this.Data.Messages.All().Where(m => m.ToId == this.CurrentUser.Id).ToList(),
+                MessagesByMe = this.Data.Messages.All().Where(m => m.FromId == this.CurrentUser.Id).ToList(),
+            };
+
+            return View(inbox);
         }
 
         // GET: Messages/Details/5

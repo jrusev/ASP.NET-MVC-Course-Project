@@ -234,6 +234,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Ads\AdDetailViewModel.cs" />
+    <Compile Include="ViewModels\Messages\InboxViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

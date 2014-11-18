@@ -1,25 +1,27 @@
-﻿
+﻿@model AdList.Web.ViewModels.Messages.InboxViewModel
 @{
     ViewBag.Title = "Inbox";
 }
 
 <h2>Inbox</h2>
 
-<div ng-view="" class="ng-scope">
-    <div class="container ng-scope">
+<div>
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img ng-src="/images/default-avatar.jpg" alt="avatar" class="avatar" src="/images/default-avatar.jpg">
+                    <img alt="avatar" class="avatar" src="/images/default-avatar.jpg">
                     <h4>Personal information:</h4>
                     <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-user"></i><span class="list-group-item-text ng-binding"> admin</span></li>
-                        <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text ng-binding"> admin admin</span></li>
-                        <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text ng-binding"> undefined</span></li>
-                        <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text ng-binding"> Sofia</span></li>
-                        <a href="#/settings">
-                            <li class="list-group-item"><i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span></li>
-                        </a>
+                        <li class="list-group-item"><i class="fa fa-user"></i><span class="list-group-item-text"> @Model.User.UserName</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text"> @Model.User.FirstName @Model.User.LastName</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text"> @Model.User.PhoneNumber</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text"> @Model.User.City</span></li>
+                        <li class="list-group-item">
+                            <a href="/Manage">
+                                <i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -31,44 +33,66 @@
                 <div class="tab-content">
                     <div id="inbox" class="tab-pane active">
                         <div class="list-group">
-                            <!-- ngRepeat: message in messages --><!-- ngIf: messages -->
-                            <div ng-repeat="message in messages" ng-if="messages" class="list-group-item ng-scope">
-                                <div class="row">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#colapse543864b9030ddb020099d3a8" target="_self">
-                                        <img ng-src="/images/default-avatar.jpg" alt="avatar" class="col-xs-1 media-object" src="/images/default-avatar.jpg"><span class="text-muted col-xs-2 ng-binding">user001</span><span class="label label-default ng-binding">Oct 11, 2014</span><span ng-hide="message.read" class="label label-danger ng-hide">New</span>
-                                        <div class="col-xs-3 ng-binding">Re: welcome</div>
-                                    </a>
-                                    <a href="#/send-message/user001" class="col-md-2 pull-right"><i class="fa fa-reply"></i> Reply</a>
+                            <!-- Repeat: message in messages --><!-- If: messages -->
+                            @if (Model.Messages.Count() > 0)
+                            {
+                                foreach (var message in Model.Messages)
+                                {
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#@message.Id" target="_self">
+                                                <img alt="avatar" class="col-xs-1 media-object" src="/images/default-avatar.jpg"><span class="text-muted col-xs-2">@message.From.UserName</span>
+                                                <span class="label label-default">@message.CreatedOn.ToString("dd MMM yyyy, HH:mm")</span>
+                                                <span class="label label-danger">New</span>
+                                                <div class="col-xs-3">@message.Title</div>
+                                            </a>
+                                            <a href="/Messages/Send?userId=@message.FromId" class="col-md-2 pull-right"><i class="fa fa-reply"></i> Reply</a>
+                                        </div>
+                                        <div id="@message.Id" class="collapse">
+                                            <div class="col-md-offset-2 well">@message.Content</div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                 <!-- end If: messages --><!-- end Repeat: message in messages -->
+                                <div class="list-group-item">
+                                    <h3 class="text-info">No messages</h3>
                                 </div>
-                                <div id="colapse543864b9030ddb020099d3a8" class="collapse">
-                                    <div class="col-md-offset-2 well ng-binding">How can I post ads on the site?</div>
-                                </div>
-                            </div>
-                            <!-- end ngIf: messages --><!-- end ngRepeat: message in messages -->
-                            <div ng-hide="messages" class="list-group-item ng-hide">
-                                <h3 class="text-info">No messages</h3>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div id="sent" class="tab-pane">
                         <div class="list-group">
-                            <!-- ngRepeat: message in messagesByMe --><!-- ngIf: messagesByMe -->
-                            <div ng-repeat="message in messagesByMe" ng-if="messagesByMe" class="list-group-item ng-scope">
-                                <div class="row">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#colapse-send-54386467030ddb020099d3a7" target="_self">
-                                        <img ng-src="images/default-avatar.jpg" alt="avatar" class="col-xs-1 media-object" src="images/default-avatar.jpg"><span class="text-muted col-xs-2 ng-binding">user001</span><span class="label label-default ng-binding">Oct 11, 2014</span>
-                                        <div class="col-xs-3 ng-binding">Welcome!</div>
-                                    </a>
-                                    <a href="#/send-message/user001" class="col-md-2 pull-right"><i class="fa fa-plus"></i> new</a>
+                            <!-- Repeat: message in messagesByMe --><!-- If: messagesByMe -->
+                            @if (Model.MessagesByMe.Count() > 0)
+                            {
+                                foreach (var message in Model.MessagesByMe)
+                                {
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#@message.Id" target="_self">
+                                                <img alt="avatar" class="col-xs-1 media-object" src="/images/default-avatar.jpg"><span class="text-muted col-xs-2">@message.From.UserName</span>
+                                                <span class="label label-default">@message.CreatedOn.ToString("dd MMM yyyy, HH:mm")</span>
+                                                <span class="label label-danger">New</span>
+                                                <div class="col-xs-3">@message.Title</div>
+                                            </a>
+                                            <a href="/Messages/Send?userId=@message.ToId" class="col-md-2 pull-right"><i class="fa fa-plus"></i> new</a>
+                                        </div>
+                                        <div id="@message.Id" class="collapse">
+                                            <div class="col-md-offset-2 well">@message.Content</div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                 <!-- end If: messagesByMe --><!-- end Repeat: message in messagesByMe -->
+                                <div class="list-group-item">
+                                    <h3 class="text-info">No messages</h3>
                                 </div>
-                                <div id="colapse-send-54386467030ddb020099d3a7" class="collapse">
-                                    <div class="col-md-offset-2 well ng-binding">Hi, welcome to ItemEx.</div>
-                                </div>
-                            </div>
-                            <!-- end ngIf: messagesByMe --><!-- end ngRepeat: message in messagesByMe -->
-                            <div ng-hide="messagesByMe" class="list-group-item ng-hide">
-                                <h3 class="text-info">No messages</h3>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@
                 @Html.AntiForgeryToken()
 
                 @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
                 <fieldset>
                     <legend>Update ad</legend>
@@ -35,7 +36,7 @@
                             <div class="col-md-10">
                                 @Html.DropDownListFor(
                                 m => m.CategoryId,
-                                new SelectList(Model.CategoryOptions, "Id", "Name", Model.CategoryId),
+                                new SelectList(ViewBag.CategoryOptions, "Id", "Name", Model.CategoryId),
                                 new { @class = "form-control" })
                             </div>
                         </div>

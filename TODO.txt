@@ -1,3 +1,4 @@
+- Edit ads (plus links on User/MyAds0)
 - Messages
 - image upload
 - editor or display templates
@@ -5,7 +6,7 @@
 - AJAX form
 - unit tests
 // optional
-- Edit ads (plus links on User/MyAds0)
+
 - Delete ads
 - Edit user profile
 - Use caching where appropriate

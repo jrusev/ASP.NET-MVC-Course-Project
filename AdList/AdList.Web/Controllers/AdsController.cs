@@ -21,16 +21,6 @@
             this.sanitizer = sanitizer;
         }
 
-        //public AdsController(
-        //    IDeletableEntityRepository<Ad> ads,
-        //    IDeletableEntityRepository<Category> categories,
-        //    ISanitizer sanitizer)
-        //{
-        //    this.ads = ads;
-        //    this.categories = categories;
-        //    this.sanitizer = sanitizer;
-        //}
-
         public ActionResult All(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var model = new HomeViewModel();

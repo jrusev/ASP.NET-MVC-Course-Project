@@ -13,6 +13,9 @@
 
     public class User : IdentityUser, IAuditInfo
     {
+        public const string AdminRole = "Administrator";
+        public const string UserRole = "User";
+
         public User()
         {
             // This will prevent UserManager.CreateAsync from causing exception

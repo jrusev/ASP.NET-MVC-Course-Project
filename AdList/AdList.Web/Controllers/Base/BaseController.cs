@@ -1,15 +1,11 @@
-﻿using AdList.Data.Models;
-using AdList.Data.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.Identity;
-
-using System.Web.Mvc;
-
-namespace AdList.Web.Controllers
+﻿namespace AdList.Web.Controllers
 {
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using AdList.Data.Models;
+    using AdList.Data.UnitOfWork;
+
     public abstract class BaseController : Controller
     {
         private User currentUser;

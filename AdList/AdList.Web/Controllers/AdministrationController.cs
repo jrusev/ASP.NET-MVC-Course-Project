@@ -8,6 +8,7 @@
     using AutoMapper.QueryableExtensions;
     using AdList.Web.Infrastructure;
     using AdList.Data.UnitOfWork;
+    using System.Net;
 
     public class AdminController : AdsPagingControllerBase
     {
@@ -29,42 +30,63 @@
 
         // GET: Admin/Edit/5
         [Authorize(Roles = "Administrator")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            var ad = this.Data.Ads.All().FirstOrDefault(x => x.Id == id);
-            if (ad == null)
+            if (id == null)
             {
-                return this.HttpNotFound("No ad with such id!");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = new AdInputModel()
-            {
-                Title = ad.Title,
-                Description = ad.Description,
-                Price = ad.Price,
-                ImageUrl = ad.ImageUrl,
-                CategoryId = ad.CategoryId
-            };
-            model.CategoryOptions = this.Data.Categories.All().OrderBy(x => x.Name);
+            var ad =
+                this.Data.Ads
+                .All()
+                .Project().To<AdInputModel>()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
 
-            return this.View(model);
+            if (ad == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            if (ad.AuthorId != this.CurrentUser.Id && !this.User.IsInRole(AdList.Data.Models.User.AdminRole))
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            ViewBag.CategoryOptions = this.Data.Categories.All().OrderBy(x => x.Name);
+
+            return this.View(ad);
         }
 
         // POST: Admin/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AdInputModel input)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                return this.View(input);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var adFromDb = this.Data.Ads.Find(input.Id);
+
+            if (adFromDb.AuthorId != this.CurrentUser.Id && !User.IsInRole(AdList.Data.Models.User.AdminRole))
             {
-                return View();
+                return this.RedirectToAction("Index");
             }
+                    
+            adFromDb.Title = input.Title;
+            adFromDb.Price = input.Price;
+            adFromDb.Description = input.Description;
+            adFromDb.CategoryId = input.CategoryId;
+            adFromDb.ImageUrl = input.ImageUrl;
+
+            this.Data.Ads.Update(adFromDb);
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
 
         // GET: Admin/Delete/5

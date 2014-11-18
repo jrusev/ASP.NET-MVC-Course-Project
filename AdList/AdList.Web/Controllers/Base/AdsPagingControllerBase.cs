@@ -56,7 +56,7 @@
                     allAds = allAds.OrderByDescending(ad => ad.CreatedOn);
                     break;
                 default:  // by date 
-                    allAds = allAds.OrderBy(ad => ad.CreatedOn);
+                    allAds = allAds.OrderByDescending(ad => ad.CreatedOn);
                     break;
             }
 

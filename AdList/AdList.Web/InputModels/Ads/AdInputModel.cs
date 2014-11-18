@@ -1,4 +1,5 @@
 ﻿using AdList.Data.Models;
+using AdList.Web.Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,8 +9,12 @@ using System.Web.Mvc;
 
 namespace AdList.Web.InputModels.Ads
 {
-    public class AdInputModel
+    public class AdInputModel : IMapFrom<Ad>
     {
+        public int Id { get; set; }
+
+        public string AuthorId { get; set; }
+
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }

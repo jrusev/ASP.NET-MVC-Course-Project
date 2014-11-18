@@ -27,9 +27,9 @@ namespace AdList.Data.Migrations
             var rolesManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             // Create roles
-            if (!context.Roles.Any(r => r.Name == "Administrator"))
+            if (!context.Roles.Any(r => r.Name == User.AdminRole))
             {
-                var role = new IdentityRole { Name = "Administrator" };
+                var role = new IdentityRole { Name = User.AdminRole };
                 rolesManager.Create(role);
             }
 
@@ -38,7 +38,7 @@ namespace AdList.Data.Migrations
             {
                 var user = new User { UserName = "admin@abv.bg", Email = "admin@abv.bg" };
                 userManager.Create(user, password: "111111");
-                userManager.AddToRole(user.Id, "Administrator");
+                userManager.AddToRole(user.Id, User.AdminRole);
             }
 
             if (!context.Users.Any(u => u.UserName.Contains("user00")))

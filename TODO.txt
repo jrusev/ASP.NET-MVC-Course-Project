@@ -1,8 +1,8 @@
-- AJAX form
+- Edit Ad form must show file upload
+- Messages - fix "new" label to show unread messages
+- Implement voting with AJAX
 - Edit user profile
-//
 - Enabl Delete for users
 - two MVC Area
 - editor templates
-- Messages - fix "new"
 - unit tests

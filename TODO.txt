@@ -1,11 +1,11 @@
 - Enabl Edit/Del for users
 - two MVC Area
 - image upload
-- Edit user profile
 
 - editor or display templates
 - AJAX form
 - unit tests
-- Use caching where appropriate
+
 
 - Messages
+- Edit user profile

@@ -17,6 +17,7 @@
         {
         }
 
+        [OutputCache(Duration = 60 * 60)]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var allAds = this.Data.Ads.All().Where(a => a.Featured == true).Project().To<AdDetailViewModel>();

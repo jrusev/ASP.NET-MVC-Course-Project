@@ -32,6 +32,11 @@
             get { return this.GetRepository<Category>(); }
         }
 
+        public IRepository<Message> Messages
+        {
+            get { return this.GetRepository<Message>(); }
+        }
+
         public int SaveChanges()
         {
             return this.databaseContext.SaveChanges();

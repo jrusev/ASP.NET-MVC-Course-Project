@@ -10,6 +10,8 @@
 
         IRepository<Category> Categories { get; }
 
+        IRepository<Message> Messages { get; }
+
         int SaveChanges();
     }
 }

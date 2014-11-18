@@ -201,6 +201,7 @@
     <Compile Include="Controllers\Base\AdsPagingControllerBase.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="InputModels\Ads\AdInputModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -481,7 +482,8 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Category.cshtml" />
+    <Content Include="Views\Messages\Send.cshtml" />
+    <Content Include="Views\Messages\Inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

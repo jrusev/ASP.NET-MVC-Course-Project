@@ -24,7 +24,9 @@
                             <div><strong>City:</strong> @Model.Author.City<br></div>
                             <div><strong>Contact:</strong> @Model.Author.PhoneNumber</div>
                             <br>
-                            <div><button ng-click="goToSendMessagePage()" class="btn btn-info">Send message</button></div>
+                            <div>
+                                <a href="/Messages/Send?userId=@Model.Author.Id" class="btn btn-info">Send message</a>
+                            </div>
                         </div>
                     </div>
                 </div>

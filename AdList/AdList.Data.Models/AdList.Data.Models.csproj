@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Base\AuditInfo.cs" />
     <Compile Include="Base\IAuditInfo.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Ad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

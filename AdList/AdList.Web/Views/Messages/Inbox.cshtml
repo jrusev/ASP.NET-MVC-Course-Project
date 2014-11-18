@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Inbox";
+}
+
+<h2>Inbox</h2>
+
+<div ng-view="" class="ng-scope">
+    <div class="container ng-scope">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img ng-src="/images/default-avatar.jpg" alt="avatar" class="avatar" src="/images/default-avatar.jpg">
+                    <h4>Personal information:</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="fa fa-user"></i><span class="list-group-item-text ng-binding"> admin</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-user"></i><span class="list-group-item-text ng-binding"> admin admin</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-phone"></i><span class="list-group-item-text ng-binding"> undefined</span></li>
+                        <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i><span class="list-group-item-text ng-binding"> Sofia</span></li>
+                        <a href="#/settings">
+                            <li class="list-group-item"><i class="fa fa-gear"></i><span class="list-group-item-heading"> Settings</span></li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 well">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#inbox" target="_self" data-toggle="tab"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
+                    <li><a href="#sent" target="_self" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Sent</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="inbox" class="tab-pane active">
+                        <div class="list-group">
+                            <!-- ngRepeat: message in messages --><!-- ngIf: messages -->
+                            <div ng-repeat="message in messages" ng-if="messages" class="list-group-item ng-scope">
+                                <div class="row">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#colapse543864b9030ddb020099d3a8" target="_self">
+                                        <img ng-src="/images/default-avatar.jpg" alt="avatar" class="col-xs-1 media-object" src="/images/default-avatar.jpg"><span class="text-muted col-xs-2 ng-binding">user001</span><span class="label label-default ng-binding">Oct 11, 2014</span><span ng-hide="message.read" class="label label-danger ng-hide">New</span>
+                                        <div class="col-xs-3 ng-binding">Re: welcome</div>
+                                    </a>
+                                    <a href="#/send-message/user001" class="col-md-2 pull-right"><i class="fa fa-reply"></i> Reply</a>
+                                </div>
+                                <div id="colapse543864b9030ddb020099d3a8" class="collapse">
+                                    <div class="col-md-offset-2 well ng-binding">How can I post ads on the site?</div>
+                                </div>
+                            </div>
+                            <!-- end ngIf: messages --><!-- end ngRepeat: message in messages -->
+                            <div ng-hide="messages" class="list-group-item ng-hide">
+                                <h3 class="text-info">No messages</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sent" class="tab-pane">
+                        <div class="list-group">
+                            <!-- ngRepeat: message in messagesByMe --><!-- ngIf: messagesByMe -->
+                            <div ng-repeat="message in messagesByMe" ng-if="messagesByMe" class="list-group-item ng-scope">
+                                <div class="row">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#colapse-send-54386467030ddb020099d3a7" target="_self">
+                                        <img ng-src="images/default-avatar.jpg" alt="avatar" class="col-xs-1 media-object" src="images/default-avatar.jpg"><span class="text-muted col-xs-2 ng-binding">user001</span><span class="label label-default ng-binding">Oct 11, 2014</span>
+                                        <div class="col-xs-3 ng-binding">Welcome!</div>
+                                    </a>
+                                    <a href="#/send-message/user001" class="col-md-2 pull-right"><i class="fa fa-plus"></i> new</a>
+                                </div>
+                                <div id="colapse-send-54386467030ddb020099d3a7" class="collapse">
+                                    <div class="col-md-offset-2 well ng-binding">Hi, welcome to ItemEx.</div>
+                                </div>
+                            </div>
+                            <!-- end ngIf: messagesByMe --><!-- end ngRepeat: message in messagesByMe -->
+                            <div ng-hide="messagesByMe" class="list-group-item ng-hide">
+                                <h3 class="text-info">No messages</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--TODO: chnage sent messages collection-->
+</div>
+

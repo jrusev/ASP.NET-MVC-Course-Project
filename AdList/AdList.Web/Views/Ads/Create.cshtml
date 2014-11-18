@@ -4,9 +4,8 @@
 }
 
 <section>
-    <!-- ngView:  -->
-    <div ng-view="" class="ng-scope">
-        <div class="container ng-scope">
+    <div>
+        <div class="container">
             @using (Html.BeginForm("Create", "Ads", FormMethod.Post, new { @class = "form-horizontal", name = "createItemForm" }))
             {
                 @Html.AntiForgeryToken()

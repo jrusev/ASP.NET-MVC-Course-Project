@@ -4,7 +4,6 @@
 - AJAX form
 - unit tests
 
-
 - Messages
 - Edit user profile
 

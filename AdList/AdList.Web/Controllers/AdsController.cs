@@ -1,16 +1,20 @@
 ﻿namespace AdList.Web.Controllers
 {
-    using AdList.Data.Models;
-    using AdList.Web.InputModels.Ads;
+    using System;
+    using System.IO;
     using System.Linq;
-    using System.Web.Mvc;
-    using AdList.Web.ViewModels.Ads;
-    using AutoMapper.QueryableExtensions;
-    using AdList.Web.Infrastructure;
-    using Microsoft.AspNet.Identity;
-    using AdList.Web.ViewModels.Home;
-    using AdList.Data.UnitOfWork;
     using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using AdList.Data.Models;
+    using AdList.Data.UnitOfWork;
+    using AdList.Web.Infrastructure;
+    using AdList.Web.InputModels.Ads;
+    using AdList.Web.ViewModels.Ads;
+    using AdList.Web.ViewModels.Home;
+    using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNet.Identity;
 
     public class AdsController : AdsPagingControllerBase
     {
@@ -87,6 +91,44 @@
                         Price = input.Price,
                         ImageUrl = input.ImageUrl
                     };
+
+                this.Data.Ads.Add(ad);
+                this.Data.Ads.SaveChanges();
+                return this.RedirectToAction("Details", new { id = ad.Id, url = "new" });
+            }
+
+            return this.View(input);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateWithImage(AdInputModel input, HttpPostedFileBase imageUploaded)
+        {
+            if (ModelState.IsValid)
+            {
+                var ad = new Ad
+                {
+                    Title = input.Title,
+                    Description = sanitizer.Sanitize(input.Description),
+                    AuthorId = this.User.Identity.GetUserId(),
+                    CategoryId = input.CategoryId,
+                    Price = input.Price
+                };
+
+                if (imageUploaded != null && imageUploaded.ContentLength > 0)
+                {
+                    var allowedExtensions = new[] { ".jpg", ".png", ".gif", ".jpeg" };
+                    var extension = Path.GetExtension(imageUploaded.FileName);
+
+                    if (allowedExtensions.Contains(extension))
+                    {
+                        var fileName = Guid.NewGuid().ToString() + extension;
+                        var path = Path.Combine(Server.MapPath("~/images"), fileName);
+
+                        imageUploaded.SaveAs(path);
+                        ad.ImageUrl = fileName;
+                    }
+                }
 
                 this.Data.Ads.Add(ad);
                 this.Data.Ads.SaveChanges();

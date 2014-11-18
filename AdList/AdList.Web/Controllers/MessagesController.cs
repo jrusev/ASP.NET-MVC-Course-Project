@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using AdList.Web.ViewModels.Messages;
 
+    [Authorize]
     public class MessagesController : BaseController
     {
         private readonly ISanitizer sanitizer;

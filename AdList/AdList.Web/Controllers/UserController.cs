@@ -68,6 +68,7 @@ namespace AdList.Web.Controllers
             var userAds = user.Ads.AsQueryable().Project().To<AdDetailViewModel>();
             var model = new UserProfileViewModel()
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 LastName = user.LastName,

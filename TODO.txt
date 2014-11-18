@@ -1,12 +1,9 @@
-- Edit ads (plus links on User/MyAds0)
+- Enabl Edit/Del for users
 - Messages
 - image upload
 - editor or display templates
 - two MVC Area
 - AJAX form
 - unit tests
-// optional
-
-- Delete ads
 - Edit user profile
 - Use caching where appropriate

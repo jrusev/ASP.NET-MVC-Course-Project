@@ -1,7 +1,6 @@
-- two MVC Area
 - image upload
 
-- editor or display templates
+
 - AJAX form
 - unit tests
 
@@ -11,3 +10,5 @@
 
 //
 - Enabl Delete for users
+- two MVC Area
+- editor templates

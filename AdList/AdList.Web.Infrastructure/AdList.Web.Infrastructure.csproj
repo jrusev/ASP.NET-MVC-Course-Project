@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filters\ApplicationVersionHeader.cs" />
-    <Compile Include="HtmlHelpers\FormGroup.cs" />
+    <Compile Include="HtmlHelpers.cs" />
     <Compile Include="HtmlSanitizerAdapter.cs" />
     <Compile Include="ISanitizer.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />

@@ -1,4 +1,4 @@
-﻿namespace AdList.Web.Infrastructure.HtmlHelpers
+﻿namespace AdList.Web.Infrastructure
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
 
-    public static class FormGroup
+    public static class HtmlHelpers
     {
         private const string OuterDivClass = "form-group";
         private const string InnerDivClass = "col-md-10";

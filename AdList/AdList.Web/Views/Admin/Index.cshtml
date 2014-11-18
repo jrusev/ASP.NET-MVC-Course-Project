@@ -50,10 +50,11 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.ActionLink(item.Title, "Details", "Ads", new { id = item.Id }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
+                
             </td>
             <td>
                 @String.Format("{0}", @item.Description.Length > 50 ? @item.Description.Substring(0, 50) + "..." : @item.Description)
@@ -71,10 +72,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Author.FirstName) @Html.DisplayFor(modelItem => item.Author.LastName)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", "Ads", routeValues: new { id = item.Id }, htmlAttributes: null) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <td>               
+                @using (Html.BeginForm("Delete", "Admin", new { id = item.Id }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })                 
+                    <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                }
             </td>
         </tr>
     }

@@ -97,20 +97,21 @@
         }
 
         // POST: Admin/Delete/5
-        [Authorize]
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Ad ad = this.Data.Ads.Find(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (ad.AuthorId != this.CurrentUser.Id && !User.IsInRole(AdList.Data.Models.User.AdminRole))
             {
-                return View();
+                return this.RedirectToAction("Index");
             }
+
+            this.Data.Ads.Delete(ad);
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
     }
 }

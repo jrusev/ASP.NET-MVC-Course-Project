@@ -1,6 +1,7 @@
 ﻿namespace AdList.Web.Controllers
 {
     using System.Web.Mvc;
+    using System.Web.UI;
 
     using AutoMapper.QueryableExtensions;
 
@@ -18,7 +19,7 @@
         }
 
 #if !DEBUG
-        [OutputCache(Duration = 60 * 60)]
+        [OutputCache(Duration = 60 * 60, VaryByCustom="UserConnected", Location = OutputCacheLocation.Client)]
 #endif
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
